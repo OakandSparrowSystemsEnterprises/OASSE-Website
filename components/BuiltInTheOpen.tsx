@@ -26,6 +26,10 @@ export function BuiltInTheOpen() {
               <p className="mt-2 font-mono text-xs tracking-wide text-blue-deep">{p.gate}</p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{p.body}</p>
               <p className="mt-4 text-xs italic text-muted-soft">{p.context}</p>
+              <p className="mt-2 text-xs text-muted">
+                <span className="font-mono uppercase tracking-wider text-muted-soft">Team</span>{" "}
+                {p.team.join(", ")}
+              </p>
               <p className="mt-4 font-mono text-xs text-ink-soft">
                 <span className="text-muted">{p.repo}</span>
                 <span className="ml-2 text-blue-deep group-hover:underline">View on GitHub →</span>

@@ -35,6 +35,7 @@ export const openSource = {
       body:
         "A human-in-the-loop medical chatbot. A deterministic classifier is the safety floor; the model can only escalate caution, never override a block. Every decision is written to a tamper-evident hash chain.",
       context: "Built for the AI Collective Tri-Valley “Humans In AI” track.",
+      team: ["Aufstin Filiko"],
       repo: "OakandSparrowSystemsEnterprises/hackathon",
       href: "https://github.com/OakandSparrowSystemsEnterprises/hackathon",
     },
@@ -44,12 +45,13 @@ export const openSource = {
       body:
         "An on-device agent-governance kernel for Android. Risky actions are held for approval; every decision is Ed25519-signed and content-addressed in an audit log. Runs entirely on-device, no cloud — the same on-prem principle Gatekeeper enforces for the enterprise.",
       context: "Five releases, active.",
+      team: ["Joshua Johosky", "Jackson Castro", "Caleb Strom", "Skylar Smith", "Mool Tyagi"],
       repo: "thespacekyd-eng/Oak-Sparrow-OS",
       href: "https://github.com/thespacekyd-eng/Oak-Sparrow-OS",
     },
   ],
   contributors:
-    "Built together by Sky, Caleb Strom, and the Oak & Sparrow team, with AI assistance.",
+    "Built collaboratively by the Oak & Sparrow team, with AI assistance.",
 };
 
 // verify: "manager in the room" vs "bouncer" still being reconciled across
