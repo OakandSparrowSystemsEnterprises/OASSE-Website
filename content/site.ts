@@ -104,9 +104,11 @@ export const about = {
         role: "Chief Operating Officer",
         bio: "Leads the company's operations and execution.",
       },
+    ],
+    leadership: [
       {
         name: "Mool Tyagi",
-        role: "Chief Technology Officer",
+        role: "Fractional Chief Technology Officer",
         bio: "More than twenty years in enterprise data architecture, with work across Azure, Databricks, Microsoft Purview, Rockefeller Capital Management, UTMB, and US Bank. He has been building production-grade infrastructure at scale longer than most AI governance companies have existed.",
       },
     ],
@@ -132,11 +134,6 @@ export const about = {
         bio: "Fifteen years of financial leadership across Amazon, Paradies Lagardere, and Vino Volo. He built FP&A systems at Amazon scale, led the financial integration of a three-company merger, and has founded and advised technology ventures in the food and AI space. Michigan Ross MBA.",
       },
     ],
-  },
-  willNot: {
-    heading: "What we will not do",
-    body:
-      "We will not build a product that cannot account for itself. We will not claim compliance we have not earned, capability we cannot show, or certainty we do not have. The whole point of Oak & Sparrow is that an automated system should be able to prove what it did. We hold ourselves to the same standard.",
   },
 };
 

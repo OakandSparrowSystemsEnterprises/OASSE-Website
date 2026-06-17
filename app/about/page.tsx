@@ -66,8 +66,17 @@ export default function AboutPage() {
           <h3 className="mt-12 font-mono text-xs uppercase tracking-[0.2em] text-blue-deep">
             Founders
           </h3>
-          <div className="mt-5 grid gap-6 md:grid-cols-3">
+          <div className="mt-5 grid gap-6 sm:grid-cols-2">
             {about.team.founders.map((m) => (
+              <Person key={m.name} {...m} />
+            ))}
+          </div>
+
+          <h3 className="mt-14 font-mono text-xs uppercase tracking-[0.2em] text-blue-deep">
+            Leadership
+          </h3>
+          <div className="mt-5 grid gap-6 sm:grid-cols-2">
+            {about.team.leadership.map((m) => (
               <Person key={m.name} {...m} />
             ))}
           </div>
@@ -80,16 +89,8 @@ export default function AboutPage() {
               <Person key={m.name} {...m} />
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* What we will not do */}
-      <section className="bg-paper">
-        <div className="section">
-          <p className="eyebrow">Our line</p>
-          <h2 className="h-section mt-3 max-w-3xl">{about.willNot.heading}</h2>
-          <p className="lede mt-6 max-w-prose">{about.willNot.body}</p>
-          <div className="mt-10">
+          <div className="mt-12">
             <a href="/#onboarding" className="btn-primary">
               Begin onboarding
             </a>
