@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --forest: #1c3d2e;
+  --gold: #c2a14d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-parchment text-forest-deep font-serif antialiased;
+}
+
+/* Architectural, not illustrative: generous white space and quiet rules. */
+.section {
+  @apply mx-auto max-w-5xl px-6 py-20 md:py-28;
+}
+
+.eyebrow {
+  @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep;
+}
+
+.h-section {
+  @apply font-serif text-3xl leading-tight md:text-4xl;
+}
+
+.lede {
+  @apply text-lg leading-relaxed text-forest/90;
+}
+
+.rule {
+  @apply border-t border-forest/10;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-sm px-6 py-3 font-sans text-sm font-semibold tracking-wide transition-colors;
+}
+
+.btn-primary {
+  @apply btn bg-forest text-parchment hover:bg-forest-mid;
+}
+
+.btn-gold {
+  @apply btn bg-gold text-forest-deep hover:bg-gold-deep hover:text-parchment;
+}
+
+.btn-ghost {
+  @apply btn border border-forest/30 text-forest hover:bg-forest hover:text-parchment;
+}
+
+/* Verdict palette — locked. */
+.verdict-GREEN {
+  @apply text-verdict-green;
+}
+.verdict-YELLOW {
+  @apply text-verdict-yellow;
+}
+.verdict-RED {
+  @apply text-verdict-red;
+}
+.bg-verdict-GREEN {
+  @apply bg-verdict-green;
+}
+.bg-verdict-YELLOW {
+  @apply bg-verdict-yellow;
+}
+.bg-verdict-RED {
+  @apply bg-verdict-red;
+}
+
+.hash {
+  @apply font-mono text-[11px] leading-tight break-all;
+}
