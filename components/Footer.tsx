@@ -20,6 +20,9 @@ export function Footer() {
             {positioning.mission} {positioning.philosophy}
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs">
+            <a href="/about" className="text-blue-on underline-offset-4 hover:underline">
+              About
+            </a>
             <a
               href={links.githubOrg}
               target="_blank"
@@ -58,7 +61,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="md:col-span-2">
+        <a href="/about#team" className="group block md:col-span-2">
           <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-blue-on">
             Team
           </h3>
@@ -67,7 +70,10 @@ export function Footer() {
               <li key={t.role}>{t.role}</li>
             ))}
           </ul>
-        </div>
+          <span className="mt-3 inline-block text-xs text-blue-on group-hover:underline">
+            Meet the team →
+          </span>
+        </a>
 
         <div className="md:col-span-2">
           <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-blue-on">

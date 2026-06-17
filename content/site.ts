@@ -55,6 +55,88 @@ export const openSource = {
     "Built collaboratively by the Oak & Sparrow team, with AI assistance.",
 };
 
+// About page — story and team, drawn verbatim from the company's own
+// published About draft (public, in the company's voice).
+export const about = {
+  tagline: "Our story, and the team building it.",
+  story: {
+    heading: "How we got here",
+    paragraphs: [
+      "Oak & Sparrow did not start in AI. It started in the field.",
+      "Our founder, Joshua Johosky, spent more than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through more than 1,400 client engagements. The lesson repeated across all of them: the systems that fail are the ones where nobody can prove what happened. A decision gets made, an action runs, something breaks, and there is no record of who decided what, under which rule, or why.",
+      "Oak & Sparrow exists to work on the parts of systems that usually fail quietly. As AI, financial systems, and automated decision engines scale, the failure mode is rarely intelligence. It is control, incentives, and unexamined assumptions. Our work lives in that gap. Not policy decks. Not slogans. Operational structures that can actually run.",
+      "Gatekeeper, the governance layer, is our answer to a growing operational gap. AI-assisted development is accelerating faster than most governance models can safely absorb. Instead of relying on policy after the fact, Gatekeeper enforces intent, invariant protection, and risk-based escalation before an action runs, and seals a verifiable record of every decision. The instinct that makes a logistics network or a building safe — impose a governing layer on something running freely and keep an honest account of it — is the instinct behind the product.",
+      "The governance method was filed for patent with a November 2025 priority date and is now patent pending. The company launched in 2026. It is the same work, made provable.",
+    ],
+  },
+  principles: {
+    heading: "How we hold ourselves",
+    intro:
+      "The standard we hold our product to has to match the standard we hold the company to. If we are asking clients to trust us with governance of their AI systems, the least we can do is govern ourselves the same way. We put the operational backbone in place early, and we build in public: slowly, precisely, without noise.",
+    items: [
+      {
+        title: "Honest",
+        body:
+          "We do not overclaim. We say plainly what is live and what is demonstrated, and the product never asserts what it cannot prove.",
+      },
+      {
+        title: "Ethical",
+        body:
+          "Governance sits outside the model, on infrastructure you control, and your data does not leave your network.",
+      },
+      {
+        title: "Transparent",
+        body: "Every governed decision produces a sealed, verifiable record.",
+      },
+    ],
+  },
+  team: {
+    heading: "The team",
+    note: "Listed publicly, with our founder, because we stand behind the work by name.",
+    founders: [
+      {
+        name: "Joshua Johosky",
+        role: "Chief Executive Officer & Principal Architect",
+        bio: "More than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through over 1,400 client engagements. Architect of Gatekeeper and the governance method behind it.",
+      },
+      {
+        name: "Nick Silva",
+        role: "Chief Operating Officer",
+        bio: "Leads the company's operations and execution.",
+      },
+    ],
+    leadership: [
+      {
+        name: "Mool Tyagi",
+        role: "Fractional Chief Technology Officer",
+        bio: "More than twenty years in enterprise data architecture, with work across Azure, Databricks, Microsoft Purview, Rockefeller Capital Management, UTMB, and US Bank. He has been building production-grade infrastructure at scale longer than most AI governance companies have existed.",
+      },
+    ],
+    advisors: [
+      {
+        name: "Caleb Strom",
+        role: "Theoretical Architecture Advisor",
+        bio: "A planetary scientist and ML researcher with a PhD from the University of North Dakota and internships at NASA JPL. He applies machine learning to anomaly detection on planetary surfaces, and that same geometric detection methodology is now pointed at AI governance architecture. He stress-tests the theoretical foundations that make the infrastructure hold.",
+      },
+      {
+        name: "Scott Colgan",
+        role: "Senior Commercial GTM Advisor",
+        bio: "More than thirty years across product marketing, channel strategy, and go-to-market execution. SVP GTM Strategy at HPPY, former CMO at Ravel, VP Marketing at Eclipz, where he commercialized government-developed security technology, and at RiverMeadow Software, where he took a cloud-migration SaaS brand from concept to category leader. He has spent his career learning how go-to-market actually works in regulated and enterprise environments, where commercial momentum has to align with the architecture underneath.",
+      },
+      {
+        name: "Luz Reyna",
+        role: "Public Sector GTM Advisor",
+        bio: "More than fifty political campaigns across California and Oregon with a 95 percent win rate. A chapter-mobilization director who launched 25 chapters across 16 states, founder of The Executive Lounge, and active with the Latina Coalition of Silicon Valley and Women in AI. She has spent her career learning how power structures actually work: who makes decisions, how trust gets built in the rooms that matter, and what it takes to move systems from the inside.",
+      },
+      {
+        name: "Dhiren Mewada",
+        role: "Financial Advisor",
+        bio: "Fifteen years of financial leadership across Amazon, Paradies Lagardere, and Vino Volo. He built FP&A systems at Amazon scale, led the financial integration of a three-company merger, and has founded and advised technology ventures in the food and AI space. Michigan Ross MBA.",
+      },
+    ],
+  },
+};
+
 // verify: "manager in the room" vs "bouncer" still being reconciled across
 // the deck and canonical docs. Confirm with leadership before go-live.
 export const positioning = {
