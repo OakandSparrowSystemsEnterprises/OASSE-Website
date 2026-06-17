@@ -63,7 +63,7 @@ export const about = {
     heading: "How we got here",
     paragraphs: [
       "Oak & Sparrow did not start in AI. It started in the field.",
-      "Our founder, Joshua Johosky, spent more than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through more than four hundred client engagements. The lesson repeated across all of them: the systems that fail are the ones where nobody can prove what happened. A decision gets made, an action runs, something breaks, and there is no record of who decided what, under which rule, or why.",
+      "Our founder, Joshua Johosky, spent more than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through more than 1,400 client engagements. The lesson repeated across all of them: the systems that fail are the ones where nobody can prove what happened. A decision gets made, an action runs, something breaks, and there is no record of who decided what, under which rule, or why.",
       "Oak & Sparrow exists to work on the parts of systems that usually fail quietly. As AI, financial systems, and automated decision engines scale, the failure mode is rarely intelligence. It is control, incentives, and unexamined assumptions. Our work lives in that gap. Not policy decks. Not slogans. Operational structures that can actually run.",
       "Gatekeeper, the governance layer, is our answer to a growing operational gap. AI-assisted development is accelerating faster than most governance models can safely absorb. Instead of relying on policy after the fact, Gatekeeper enforces intent, invariant protection, and risk-based escalation before an action runs, and seals a verifiable record of every decision. The instinct that makes a logistics network or a building safe — impose a governing layer on something running freely and keep an honest account of it — is the instinct behind the product.",
       "The governance method was filed for patent with a November 2025 priority date and is now patent pending. The company launched in 2026. It is the same work, made provable.",
@@ -97,7 +97,7 @@ export const about = {
       {
         name: "Joshua Johosky",
         role: "Chief Executive Officer & Principal Architect",
-        bio: "More than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through over four hundred client engagements. Architect of Gatekeeper and the governance method behind it.",
+        bio: "More than seventeen years in systems architecture across distributed logistics, construction, and the skilled trades, through over 1,400 client engagements. Architect of Gatekeeper and the governance method behind it.",
       },
       {
         name: "Nick Silva",
