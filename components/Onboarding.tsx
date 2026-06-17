@@ -25,7 +25,8 @@ const EMPTY: FormState = {
 
 const STORAGE_KEY = "oasse_onboarding_v1";
 const SCHEDULING_URL =
-  process.env.NEXT_PUBLIC_SCHEDULING_URL || "https://cal.com/oakandsparrow/onboarding";
+  process.env.NEXT_PUBLIC_SCHEDULING_URL ||
+  "https://calendly.com/nicksilva-oakandsparrowsystemsenterprise/30min";
 
 // Maps the qualifying answers to a policy-pack starting point and what the
 // shadow audit would observe — "the moment the visitor sees the product is

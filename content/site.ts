@@ -10,15 +10,16 @@ export const company = {
   short: "Oak & Sparrow",
   product: "Gatekeeper",
   // Website domain (decided): .com, deployed on Vercel. Staff email stays on
-  // the .io domain that the team already uses.
+  // the .io domain that the team already uses. nicksilva is the monitored inbox.
   domain: "oakandsparrowsystemsenterprise.com",
-  email: "hello@oakandsparrowsystemsenterprise.io",
+  email: "nicksilva@oakandsparrowsystemsenterprise.io",
 };
 
-// Verified live against GitHub: both repos public, both MIT. LinkedIn is
-// optional and only renders when NEXT_PUBLIC_LINKEDIN_URL is set.
+// Verified live against GitHub: both repos public, both MIT. LinkedIn points
+// to Joshua's personal profile (no company page yet); override per env.
 export const links = {
   githubOrg: "https://github.com/OakandSparrowSystemsEnterprises",
+  linkedin: "https://www.linkedin.com/in/joshua-johosky/",
 };
 
 // "Built in the open" — open-source proof points. Same pattern as Gatekeeper:
