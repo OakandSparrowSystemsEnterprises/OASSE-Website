@@ -39,9 +39,13 @@ components/                           # one component per site section
 lib/
   classifier.ts                       # browser governance demo + Seam 1
   hashchain.ts                        # real SHA-256 hash chaining
-  wiki.ts                             # controlled grounding source + Seam 2
-content/site.ts                       # all canonical copy (single source)
-docs/master-build-spec.md             # the spec this build implements
+  wiki.ts                             # intent-aware retrieval over the KB + Seam 2 grounding
+content/
+  site.ts                             # all canonical copy (single source)
+  seam2_knowledge_base.json           # the assistant's definitive answer base (18 entries)
+docs/
+  master-build-spec.md                # the spec this build implements
+  seam2-knowledge-base.md             # how the KB is wired (retrieval vs model)
 ```
 
 ## The two swap-in seams (for the CTO)

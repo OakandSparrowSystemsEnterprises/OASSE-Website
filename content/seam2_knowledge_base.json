@@ -1,0 +1,359 @@
+{
+  "_meta": {
+    "purpose": "Seam 2 grounding knowledge base for the Gatekeeper governed assistant.",
+    "usage": "The assistant answers ONLY from these entries. Each entry: id, topics (match terms), question_intents (what a visitor might ask), and answer (canonical copy, in voice). Pricing gives basics, no hard numbers. Engine internals kept general.",
+    "rules": [
+      "Answer only from this base. If no entry fits, use the fallback.",
+      "Never invent pricing numbers, model names, version numbers, or rule counts.",
+      "Verdicts are deterministic and separate from these answers. This base only governs what the assistant SAYS, not what it BLOCKS."
+    ],
+    "version": "1.0",
+    "date": "2026-06-17"
+  },
+  "fallback": "I answer from Oak and Sparrow's controlled knowledge base, so I will not guess. Ask me about what Gatekeeper does, how it is different from detection tools, the verdict model, hash chaining, the architecture, pricing, compliance, the 90-day pilot, or how to get started.",
+  "entries": [
+    {
+      "id": "what_is",
+      "topics": [
+        "what is gatekeeper",
+        "what do you do",
+        "what does gatekeeper do",
+        "explain",
+        "overview",
+        "product"
+      ],
+      "question_intents": [
+        "What does Gatekeeper do?",
+        "What is this?",
+        "Explain the product"
+      ],
+      "answer": "Gatekeeper is the manager in the room for your AI. Before any AI action runs, it checks that action against your rules, returns a verdict, and seals a tamper-evident record of what happened. It runs on your own network, stores no prompts, and gives you a provable account of every decision."
+    },
+    {
+      "id": "different_from_detection",
+      "topics": [
+        "different",
+        "difference",
+        "detection",
+        "filter",
+        "dlp",
+        "monitoring",
+        "prompt filter",
+        "compare",
+        "versus",
+        "how is it different"
+      ],
+      "question_intents": [
+        "How is this different from a filter or DLP tool?",
+        "Isn't this just monitoring?"
+      ],
+      "answer": "Detection tools chase wording after the fact, and that game cannot be won because the ways to phrase a violation are endless. Gatekeeper does not chase phrasings. Before an action runs it asks one bounded question: is this action allowed under the rule that applies. Detection chases infinite surface forms. Enforcement asks one question, and seals the answer."
+    },
+    {
+      "id": "govern_decision",
+      "topics": [
+        "govern the decision",
+        "govern",
+        "string",
+        "pre-execution",
+        "before execution",
+        "how does it work",
+        "how it works",
+        "mechanism"
+      ],
+      "question_intents": [
+        "How does it actually work?",
+        "What does pre-execution governance mean?"
+      ],
+      "answer": "Gatekeeper governs the decision, not the string. It sits between your people or agents and the AI systems they use. Before an action executes, it evaluates the action against your policy packs and returns a verdict. Clean actions pass, risky actions are scoped or held, violations are blocked before they ever run. Every outcome is sealed into the record."
+    },
+    {
+      "id": "verdict_model",
+      "topics": [
+        "verdict",
+        "green",
+        "yellow",
+        "red",
+        "tiers",
+        "decision",
+        "what happens",
+        "block",
+        "permit"
+      ],
+      "question_intents": [
+        "What do the verdicts mean?",
+        "What is green yellow red?"
+      ],
+      "answer": "Every action gets a verdict before it executes and a sealed record after. GREEN means permitted, sealed, and logged. YELLOW means modified, scoped, or held for review, for example a bulk request that needs tighter scope. RED means blocked before it ever executes, for example a request to expose a customer identifier. The verdict is deterministic: the same action under the same rule always gets the same verdict."
+    },
+    {
+      "id": "hash_chaining",
+      "topics": [
+        "hash chain",
+        "hash chaining",
+        "blockchain",
+        "record",
+        "sealed",
+        "tamper",
+        "ledger",
+        "proof",
+        "receipt",
+        "audit trail"
+      ],
+      "question_intents": [
+        "How does the record work?",
+        "Is this blockchain?",
+        "How is it tamper-proof?"
+      ],
+      "answer": "It is hash chaining, not blockchain. Every decision is sealed with a cryptographic hash that includes the hash of the one before it, so altering any record visibly breaks the chain. No network, no token, no consensus overhead. Just an unbroken, verifiable ledger of every governed action. Think of it as an enterprise firewall for AI: it enforces the rule and logs the result."
+    },
+    {
+      "id": "architecture",
+      "topics": [
+        "architecture",
+        "on premises",
+        "on-prem",
+        "cloud",
+        "network",
+        "deploy",
+        "where does it run",
+        "data",
+        "local",
+        "executable"
+      ],
+      "question_intents": [
+        "Where does it run?",
+        "Does our data leave our network?",
+        "Is it cloud-based?"
+      ],
+      "answer": "Gatekeeper installs as a standalone executable on your own network. The governance layer, the answer engine, and the sealed record all run locally. Your data never leaves your environment, because there is no cloud in the decision path. Prompts are not stored, sensitive data is masked before any record is created, and identifiers never persist."
+    },
+    {
+      "id": "data_handling",
+      "topics": [
+        "data",
+        "store",
+        "prompts",
+        "pii",
+        "sensitive",
+        "privacy",
+        "mask",
+        "identifiers",
+        "ssn",
+        "phi",
+        "retain"
+      ],
+      "question_intents": [
+        "Do you store our prompts?",
+        "What happens to sensitive data?"
+      ],
+      "answer": "Prompts are never stored. Sensitive data is masked on your side before any record is created, and is excluded from the sealed record. The audit trail proves the governance decision, which policy applied and what was decided, without preserving the private content itself. Identifiers like SSNs never persist anywhere in the system."
+    },
+    {
+      "id": "three_outcomes",
+      "topics": [
+        "outcomes",
+        "benefits",
+        "compute",
+        "cost",
+        "water",
+        "accountability",
+        "why use",
+        "value"
+      ],
+      "question_intents": [
+        "What do we get out of it?",
+        "What are the benefits?"
+      ],
+      "answer": "Three outcomes. Lower compute cost, because the AI does not waste cycles on actions that should never run. Saved water, because less wasted compute means less data-center cooling demand. And cryptographic accountability, a provable record of every decision for audit and compliance."
+    },
+    {
+      "id": "pricing",
+      "topics": [
+        "price",
+        "pricing",
+        "cost",
+        "how much",
+        "charge",
+        "fee",
+        "what do you charge",
+        "expensive",
+        "subscription",
+        "pay",
+        "afford"
+      ],
+      "question_intents": [
+        "How much does it cost?",
+        "What do you charge?",
+        "What is the pricing model?"
+      ],
+      "answer": "Pricing has three parts. An onboarding fee that covers building your policy pack and standing up the install. A monthly floor set at half the onboarding fee, your predictable baseline. And usage-based pricing above the floor, tied to the volume of governed decisions, banded by verdict tier. We are priced on governed decisions, not per seat, so cost tracks the value delivered. The specific figures depend on your environment and volume, and we confirm them with you on the onboarding call."
+    },
+    {
+      "id": "pricing_why_not_seat",
+      "topics": [
+        "per seat",
+        "seat",
+        "why usage",
+        "why not seat",
+        "saas pricing",
+        "how priced"
+      ],
+      "question_intents": [
+        "Why not per-seat pricing?",
+        "Why usage-based?"
+      ],
+      "answer": "Per-seat pricing breaks for a governance layer, because the value is not in how many people log in, it is in how many AI decisions get governed. Pricing the governed decision tracks the actual work the system does and scales naturally with enterprise volume, without a per-seat ceiling distorting the value."
+    },
+    {
+      "id": "compliance",
+      "topics": [
+        "compliance",
+        "regulation",
+        "hipaa",
+        "finra",
+        "legal",
+        "cpni",
+        "policy pack",
+        "regulated",
+        "auditor",
+        "audit",
+        "regime"
+      ],
+      "question_intents": [
+        "Which regulations do you cover?",
+        "Can you support our compliance regime?",
+        "How do we prove governance to an auditor?"
+      ],
+      "answer": "Policy packs are built from the actual rules that govern your industry, including HIPAA, financial, legal, and telecom regimes. Because every governed action produces a sealed, hash-chained artifact, you can show an auditor exactly what was checked, which policy applied, and what was decided, without exposing the private content. We confirm the specific scope for your environment during onboarding."
+    },
+    {
+      "id": "pilot",
+      "topics": [
+        "pilot",
+        "90 day",
+        "90-day",
+        "trial",
+        "shadow",
+        "enforcement",
+        "engagement",
+        "how long",
+        "onboarding time",
+        "get started timeline"
+      ],
+      "question_intents": [
+        "What does the pilot involve?",
+        "How does the engagement work?",
+        "Does it disrupt our workflow?"
+      ],
+      "answer": "The engagement is a 90-day pilot. Days 1 to 15 are a shadow audit: Gatekeeper observes what would have happened, without blocking anything, so you see your real AI exposure first. Days 16 to 45 are guided enforcement: green passes, yellow scopes, red blocks, on the installed executable. Days 46 to 90 are expansion: policy packs are tuned and you finish with an audit-ready governed AI usage record. Enforcement does not disrupt day one, because the shadow phase comes first."
+    },
+    {
+      "id": "onboarding",
+      "topics": [
+        "onboard",
+        "onboarding",
+        "get started",
+        "start",
+        "sign up",
+        "how do i begin",
+        "next step",
+        "setup",
+        "self serve",
+        "self-serve"
+      ],
+      "question_intents": [
+        "How do we get started?",
+        "Is this self-serve?",
+        "How long is setup?"
+      ],
+      "answer": "It is not self-serve. Onboarding begins after paperwork and the onboarding fee, and takes roughly 15 to 20 days while we build your policy pack and verify the governance ontology for your environment. You can begin the fit check on this site: a few questions about your industry and compliance regime, then we show you exactly where Gatekeeper would start and book the discovery call."
+    },
+    {
+      "id": "why_now",
+      "topics": [
+        "why now",
+        "model pulled",
+        "jailbreak",
+        "outside the model",
+        "why governance",
+        "urgency",
+        "safety"
+      ],
+      "question_intents": [
+        "Why does this matter now?",
+        "Why not just trust the model's safety?"
+      ],
+      "answer": "Safety that lives inside a model can be pulled or jailbroken out of it, and when a model gets changed or withdrawn, the work in flight is gone but you still need the record of what it did. Governance has to sit outside the model, on infrastructure you control. That is what Gatekeeper is."
+    },
+    {
+      "id": "who_for",
+      "topics": [
+        "who is it for",
+        "who uses",
+        "industries",
+        "customers",
+        "fit",
+        "right for us",
+        "legal healthcare insurance banking"
+      ],
+      "question_intents": [
+        "Who is this for?",
+        "Is it right for our industry?"
+      ],
+      "answer": "Gatekeeper is built for regulated teams that need proof: legal firms protecting client confidentiality, healthcare teams governing PHI, insurance teams protecting customer records, and community banks and financial firms that need audit-ready AI controls. If your people use AI on sensitive data and you have to prove what happened, it fits."
+    },
+    {
+      "id": "deterministic",
+      "topics": [
+        "deterministic",
+        "consistent",
+        "reliable",
+        "same answer",
+        "predictable",
+        "is the ai deterministic"
+      ],
+      "question_intents": [
+        "Is it deterministic?",
+        "How is it reliable if AI is involved?"
+      ],
+      "answer": "The governance layer is deterministic: the same action under the same rule always produces the same verdict, every time, with no randomness. The answer engine that generates responses is a separate component, and it is itself governed by the same layer. So the part that decides what is allowed is fully deterministic, which is what makes the record defensible."
+    },
+    {
+      "id": "company",
+      "topics": [
+        "company",
+        "who are you",
+        "oak and sparrow",
+        "team",
+        "about",
+        "founded",
+        "patent"
+      ],
+      "question_intents": [
+        "Who is Oak and Sparrow?",
+        "Is this a real company?"
+      ],
+      "answer": "Oak and Sparrow Systems Enterprises builds the ethical infrastructure for the automated age, designed to govern AI and protect our humanity. Gatekeeper is a running product with signed pilots and a patent-pending governance engine. We do not extract. We steward."
+    },
+    {
+      "id": "contact",
+      "topics": [
+        "contact",
+        "talk to",
+        "demo",
+        "call",
+        "reach",
+        "schedule",
+        "book",
+        "sales",
+        "speak"
+      ],
+      "question_intents": [
+        "How do I talk to someone?",
+        "Can I get a demo?"
+      ],
+      "answer": "You can begin onboarding right on this site, which starts with a short fit check and books a discovery call, or use the contact option in the navigation. The fastest path to a real answer for your environment is the onboarding call."
+    }
+  ]
+}
