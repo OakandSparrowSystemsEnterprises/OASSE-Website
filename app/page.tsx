@@ -20,9 +20,9 @@ export default function Home() {
       <Architecture />
       <WhyNow />
       <Engagement />
+      <BuiltInTheOpen />
       <Onboarding />
       <WhoItsFor />
-      <BuiltInTheOpen />
     </>
   );
 }

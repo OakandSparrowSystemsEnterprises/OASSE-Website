@@ -1,7 +1,7 @@
 import { company, positioning, links, openSource } from "@/content/site";
 
-// LinkedIn renders only when set (YOU SET item — confirm the page first).
-const linkedIn = process.env.NEXT_PUBLIC_LINKEDIN_URL;
+// LinkedIn: env override, else the default in content/site.ts (Joshua's profile).
+const linkedIn = process.env.NEXT_PUBLIC_LINKEDIN_URL || links.linkedin;
 
 // Chatham-clean team framing: roles, C-level only. No names.
 const team = [
