@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --forest: #1c3d2e;
-  --gold: #c2a14d;
+  --forest: #1b4332;
+  --gold: #c9a84c;
 }
 
 html {
@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  @apply bg-parchment text-forest-deep font-serif antialiased;
+  @apply bg-parchment text-ink font-serif antialiased;
 }
 
 /* Architectural, not illustrative: generous white space and quiet rules. */

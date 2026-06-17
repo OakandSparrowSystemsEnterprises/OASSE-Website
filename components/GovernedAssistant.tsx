@@ -149,7 +149,7 @@ export function GovernedAssistant() {
                   <div
                     className={`max-w-[85%] rounded-sm px-4 py-3 text-sm leading-relaxed ${
                       m.role === "user"
-                        ? "bg-parchment text-forest-deep"
+                        ? "bg-parchment text-ink"
                         : "bg-forest-mid/40 text-parchment"
                     }`}
                   >
@@ -157,19 +157,19 @@ export function GovernedAssistant() {
                       <span
                         className={`mb-1 flex items-center gap-1.5 font-sans text-[11px] font-semibold uppercase tracking-wider ${
                           m.thermal === "GREEN"
-                            ? "text-verdict-green"
+                            ? "text-verdict-green-on"
                             : m.thermal === "YELLOW"
-                              ? "text-verdict-yellow"
-                              : "text-verdict-red"
+                              ? "text-verdict-yellow-on"
+                              : "text-verdict-red-on"
                         }`}
                       >
                         <span
                           className={`h-2 w-2 rounded-full ${
                             m.thermal === "GREEN"
-                              ? "bg-verdict-green"
+                              ? "bg-verdict-green-on"
                               : m.thermal === "YELLOW"
-                                ? "bg-verdict-yellow"
-                                : "bg-verdict-red"
+                                ? "bg-verdict-yellow-on"
+                                : "bg-verdict-red-on"
                           }`}
                         />
                         {m.thermal} · {thermalLabel[m.thermal]}
@@ -246,7 +246,7 @@ export function GovernedAssistant() {
             {verifyState && (
               <p
                 className={`mt-3 font-sans text-xs ${
-                  verifyState.ok ? "text-verdict-green" : "text-verdict-red"
+                  verifyState.ok ? "text-verdict-green-on" : "text-verdict-red-on"
                 }`}
               >
                 {verifyState.ok
@@ -272,10 +272,10 @@ export function GovernedAssistant() {
                     <span
                       className={`font-semibold ${
                         r.thermal === "GREEN"
-                          ? "text-verdict-green"
+                          ? "text-verdict-green-on"
                           : r.thermal === "YELLOW"
-                            ? "text-verdict-yellow"
-                            : "text-verdict-red"
+                            ? "text-verdict-yellow-on"
+                            : "text-verdict-red-on"
                       }`}
                     >
                       {r.thermal} · {r.verdict}

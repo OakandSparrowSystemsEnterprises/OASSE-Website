@@ -2,6 +2,7 @@
   "name": "oasse-website",
   "version": "1.0.0",
   "private": true,
+  "license": "Apache-2.0",
   "description": "Oak & Sparrow Systems Enterprises .com — explain Gatekeeper, onboard on-site, host the governed assistant.",
   "scripts": {
     "dev": "next dev",

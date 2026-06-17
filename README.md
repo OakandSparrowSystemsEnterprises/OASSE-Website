@@ -88,3 +88,15 @@ npm run dev                  # http://localhost:3000
   the usage analysis lands. (`content/site.ts → engagement.pricingNote`.)
 - **Engine internals** — keep model names, versions, and rule counts out of
   public copy; verify any specific figure with the CTO.
+
+## Brand
+
+Colors are matched to the live site, `oakandsparrowsystemsenterprise.io`:
+forest `#1B4332`, forest-mid `#2D6A4F`, gold `#C9A84C`, gold-deep `#A8862F`,
+paper `#FBFBF8`, ink `#16241D`. Verdict palette: GREEN `#2D6A4F`,
+YELLOW `#C9A84C`, RED `#B0301F` (with brighter tints for dark backgrounds).
+Defined once in [`tailwind.config.ts`](tailwind.config.ts).
+
+## License
+
+[Apache License 2.0](LICENSE). © 2026 Oak and Sparrow Systems Enterprises.
