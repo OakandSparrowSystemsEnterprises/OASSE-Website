@@ -10,29 +10,41 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Canonical brand palette, matched to oakandsparrowsystemsenterprise.io
-      // (forest green and gold). Sourced from the team's committed site assets.
+      // Light-blue brand scheme, matched to the Gatekeeper page: cream paper,
+      // near-black ink headlines, a single muted slate-blue accent. Navy is the
+      // dark anchor for the governance panel and footer.
       colors: {
-        forest: {
-          DEFAULT: "#1B4332", // --forest
-          deep: "#0F2118", // dark panels (verdict pane, mini-ledger)
-          mid: "#2D6A4F", // --forest-mid
-          soft: "#E6F4EE", // --green-bg, light section background
+        paper: {
+          DEFAULT: "#F4F1EA", // cream page background
+          cool: "#EAF0F3", // faint cool band for section rhythm
         },
-        gold: {
-          DEFAULT: "#C9A84C", // --gold
-          soft: "#E6CD7E", // lighter gold for text on dark
-          deep: "#A8862F", // --gold-deep
+        white: "#FFFFFF",
+        ink: {
+          DEFAULT: "#1A1A1A", // headlines + primary text
+          soft: "#3A4148",
         },
-        parchment: "#FBFBF8", // --paper
-        ink: "#16241D", // --ink, primary body text
-        muted: "#5C6B63", // --muted
-        line: "#D8E0DA", // --line, hairline borders
+        muted: {
+          DEFAULT: "#56606A", // secondary text
+          soft: "#7A828B",
+        },
+        line: "#E2E0D7", // hairline borders
+        navy: {
+          DEFAULT: "#243240", // dark sections / panels
+          deep: "#1A2530",
+          soft: "#2E3F4F",
+        },
+        blue: {
+          DEFAULT: "#6F90A8", // the slate-blue accent
+          deep: "#557791", // hover / darker accent on light
+          soft: "#AFC6D6", // light tint
+          on: "#9FBDD2", // accent text on navy
+        },
+        // Verdict palette — the product's signal, kept distinct and legible on
+        // both the cream/white light surfaces and the navy dark panel.
         verdict: {
           green: "#2D6A4F",
-          yellow: "#C9A84C",
+          yellow: "#B07D1E",
           red: "#B0301F",
-          // brighter tints for verdict text/dots on dark backgrounds
           "green-on": "#7FD3AA",
           "yellow-on": "#E6CD7E",
           "red-on": "#FF9B8C",

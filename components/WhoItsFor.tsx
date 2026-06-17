@@ -9,9 +9,9 @@ export function WhoItsFor() {
       </h2>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {audiences.map((a) => (
-          <div key={a.name} className="border-t-2 border-gold pt-5">
-            <h3 className="font-serif text-lg text-forest">{a.name}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-forest/80">{a.body}</p>
+          <div key={a.name} className="border-t-2 border-blue pt-5">
+            <h3 className="font-serif text-lg text-ink">{a.name}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{a.body}</p>
           </div>
         ))}
       </div>

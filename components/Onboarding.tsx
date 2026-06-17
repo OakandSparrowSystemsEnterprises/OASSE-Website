@@ -131,7 +131,7 @@ export function Onboarding() {
   }
 
   return (
-    <section id="onboarding" className="bg-forest-soft">
+    <section id="onboarding" className="bg-paper-cool">
       <div className="section">
         <p className="eyebrow">Onboarding</p>
         <h2 className="h-section mt-3 max-w-3xl">Begin onboarding, no sales call required.</h2>
@@ -149,10 +149,10 @@ export function Onboarding() {
                 key={s.n}
                 className={`flex items-center gap-2 rounded-sm border px-3 py-2 font-sans text-xs ${
                   state === "current"
-                    ? "border-forest bg-forest text-parchment"
+                    ? "border-blue bg-blue text-white"
                     : state === "done"
-                      ? "border-gold/50 bg-gold/10 text-forest"
-                      : "border-forest/15 text-forest/50"
+                      ? "border-blue/40 bg-blue/10 text-ink"
+                      : "border-line text-muted-soft"
                 }`}
               >
                 <span className="font-semibold">{state === "done" ? "✓" : s.n}</span>
@@ -163,7 +163,7 @@ export function Onboarding() {
         </ol>
 
         {resumed && step < 5 && !submitted && (
-          <p className="mt-4 font-sans text-xs text-gold-deep">
+          <p className="mt-4 font-sans text-xs text-blue-deep">
             Welcome back — we restored your progress.{" "}
             <button onClick={reset} className="underline underline-offset-2">
               Start over
@@ -171,12 +171,12 @@ export function Onboarding() {
           </p>
         )}
 
-        <div className="mt-8 rounded-sm border border-forest/15 bg-parchment p-7 md:p-10">
+        <div className="mt-8 rounded-sm border border-line bg-white p-7 md:p-10">
           {/* Step 1 — Qualify */}
           {step === 1 && (
             <div>
-              <h3 className="font-serif text-2xl text-forest">1 · Qualify</h3>
-              <p className="mt-2 text-sm text-forest/70">{onboardingSteps[0].blurb}</p>
+              <h3 className="font-serif text-2xl text-ink">1 · Qualify</h3>
+              <p className="mt-2 text-sm text-muted">{onboardingSteps[0].blurb}</p>
 
               <Field label="Your industry">
                 <Choices options={INDUSTRIES} value={form.industry} onPick={(v) => set("industry", v)} />
@@ -192,7 +192,7 @@ export function Onboarding() {
                   value={form.tools}
                   onChange={(e) => set("tools", e.target.value)}
                   placeholder="e.g. ChatGPT, Copilot, internal models"
-                  className="w-full rounded-sm border border-forest/20 bg-parchment px-4 py-3 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-gold"
+                  className="w-full rounded-sm border border-line bg-white px-4 py-3 font-sans text-sm text-ink focus:outline-none focus:ring-1 focus:ring-blue"
                 />
               </Field>
 
@@ -211,13 +211,13 @@ export function Onboarding() {
           {/* Step 2 — Show the fit */}
           {step === 2 && (
             <div>
-              <h3 className="font-serif text-2xl text-forest">2 · Your fit</h3>
-              <div className="mt-6 rounded-sm border border-gold/40 bg-gold/10 p-6">
-                <p className="font-sans text-xs uppercase tracking-wider text-gold-deep">
+              <h3 className="font-serif text-2xl text-ink">2 · Your fit</h3>
+              <div className="mt-6 rounded-sm border border-blue/40 bg-blue/10 p-6">
+                <p className="font-sans text-xs uppercase tracking-wider text-blue-deep">
                   Recommended policy pack
                 </p>
-                <p className="mt-1 font-serif text-2xl text-forest">{fit.pack}</p>
-                <p className="mt-4 leading-relaxed text-forest/85">
+                <p className="mt-1 font-serif text-2xl text-ink">{fit.pack}</p>
+                <p className="mt-4 leading-relaxed text-ink-soft">
                   During the shadow audit, Gatekeeper would observe {fit.observes}
                 </p>
               </div>
@@ -228,22 +228,22 @@ export function Onboarding() {
           {/* Step 3 — Explain the engagement */}
           {step === 3 && (
             <div>
-              <h3 className="font-serif text-2xl text-forest">3 · The engagement</h3>
-              <p className="mt-2 text-sm text-forest/70">{onboardingSteps[2].blurb}</p>
+              <h3 className="font-serif text-2xl text-ink">3 · The engagement</h3>
+              <p className="mt-2 text-sm text-muted">{onboardingSteps[2].blurb}</p>
               <ol className="mt-6 space-y-4">
                 {engagement.phases.map((p, i) => (
                   <li key={p.name} className="flex gap-4">
-                    <span className="font-mono text-xs text-gold-deep">{p.window}</span>
+                    <span className="font-mono text-xs text-blue-deep">{p.window}</span>
                     <div>
-                      <p className="font-serif text-lg text-forest">
+                      <p className="font-serif text-lg text-ink">
                         {i + 1}. {p.name}
                       </p>
-                      <p className="text-sm text-forest/75">{p.body}</p>
+                      <p className="text-sm text-muted">{p.body}</p>
                     </div>
                   </li>
                 ))}
               </ol>
-              <p className="mt-6 max-w-prose text-sm text-forest/70">{engagement.pricingNote}</p>
+              <p className="mt-6 max-w-prose text-sm text-muted">{engagement.pricingNote}</p>
               <NavRow onBack={() => setStep(2)} onNext={() => setStep(4)} nextLabel="Your details →" />
             </div>
           )}
@@ -251,8 +251,8 @@ export function Onboarding() {
           {/* Step 4 — Capture */}
           {step === 4 && (
             <div>
-              <h3 className="font-serif text-2xl text-forest">4 · Your details</h3>
-              <p className="mt-2 text-sm text-forest/70">{onboardingSteps[3].blurb}</p>
+              <h3 className="font-serif text-2xl text-ink">4 · Your details</h3>
+              <p className="mt-2 text-sm text-muted">{onboardingSteps[3].blurb}</p>
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <Field label="Name">
                   <Text value={form.name} onChange={(v) => set("name", v)} placeholder="Jane Doe" />
@@ -282,20 +282,20 @@ export function Onboarding() {
           {/* Step 5 — Confirm and hand off */}
           {step === 5 && (
             <div className="text-center">
-              <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold-deep">
+              <p className="font-sans text-xs uppercase tracking-[0.18em] text-blue-deep">
                 Confirmed
               </p>
-              <h3 className="mt-2 font-serif text-2xl text-forest">
+              <h3 className="mt-2 font-serif text-2xl text-ink">
                 You&apos;re set{form.name ? `, ${form.name.split(" ")[0]}` : ""}.
               </h3>
-              <p className="mx-auto mt-4 max-w-prose leading-relaxed text-forest/80">
+              <p className="mx-auto mt-4 max-w-prose leading-relaxed text-muted">
                 Book your onboarding call below. Next: an NDA, hardware
                 provisioning funded by onboarding, and your{" "}
                 <strong>{fit.pack}</strong> policy pack built during the shadow
                 window. Enforcement begins at day 16 on the installed executable.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <a href={SCHEDULING_URL} target="_blank" rel="noreferrer" className="btn-gold">
+                <a href={SCHEDULING_URL} target="_blank" rel="noreferrer" className="btn-primary">
                   Book the onboarding call →
                 </a>
                 <button onClick={reset} className="btn-ghost">
@@ -315,7 +315,7 @@ export function Onboarding() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="mt-6 block">
-      <span className="font-sans text-sm font-medium text-forest">{label}</span>
+      <span className="font-sans text-sm font-medium text-ink">{label}</span>
       <div className="mt-2">{children}</div>
     </label>
   );
@@ -339,8 +339,8 @@ function Choices({
           onClick={() => onPick(o)}
           className={`rounded-sm border px-4 py-2 font-sans text-sm transition-colors ${
             value === o
-              ? "border-forest bg-forest text-parchment"
-              : "border-forest/20 text-forest/80 hover:border-forest/50"
+              ? "border-blue bg-blue text-white"
+              : "border-line text-muted hover:border-blue"
           }`}
         >
           {o}
@@ -367,7 +367,7 @@ function Text({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full rounded-sm border border-forest/20 bg-parchment px-4 py-3 font-sans text-sm focus:outline-none focus:ring-1 focus:ring-gold"
+      className="w-full rounded-sm border border-line bg-white px-4 py-3 font-sans text-sm text-ink focus:outline-none focus:ring-1 focus:ring-blue"
     />
   );
 }

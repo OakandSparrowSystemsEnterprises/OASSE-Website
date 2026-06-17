@@ -131,15 +131,15 @@ export function GovernedAssistant() {
   }
 
   return (
-    <section id="assistant" className="bg-forest-deep text-parchment">
+    <section id="assistant" className="bg-navy-deep text-paper">
       <div className="section">
-        <p className="eyebrow text-gold-soft">The live assistant</p>
+        <p className="eyebrow text-blue-on">The live assistant</p>
         <h2 className="h-section mt-3 max-w-3xl">{assistant.heading}</h2>
-        <p className="mt-6 max-w-prose leading-relaxed text-parchment/85">{assistant.intro}</p>
+        <p className="mt-6 max-w-prose leading-relaxed text-paper/85">{assistant.intro}</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-5">
           {/* Chat */}
-          <div className="flex flex-col rounded-sm border border-parchment/15 bg-forest lg:col-span-3">
+          <div className="flex flex-col rounded-sm border border-white/15 bg-navy lg:col-span-3">
             <div ref={scrollRef} className="h-[420px] space-y-4 overflow-y-auto p-5">
               {messages.map((m) => (
                 <div
@@ -149,8 +149,8 @@ export function GovernedAssistant() {
                   <div
                     className={`max-w-[85%] rounded-sm px-4 py-3 text-sm leading-relaxed ${
                       m.role === "user"
-                        ? "bg-parchment text-ink"
-                        : "bg-forest-mid/40 text-parchment"
+                        ? "bg-paper text-ink"
+                        : "bg-navy-soft text-paper"
                     }`}
                   >
                     {m.thermal && (
@@ -177,7 +177,7 @@ export function GovernedAssistant() {
                     )}
                     <p>{m.text}</p>
                     {m.sources && m.sources.length > 0 && (
-                      <p className="mt-2 font-sans text-[11px] text-parchment/50">
+                      <p className="mt-2 font-sans text-[11px] text-paper/50">
                         Grounded on: {m.sources.join(", ")}
                       </p>
                     )}
@@ -186,7 +186,7 @@ export function GovernedAssistant() {
               ))}
               {busy && (
                 <div className="flex justify-start">
-                  <div className="rounded-sm bg-forest-mid/40 px-4 py-3 text-sm text-parchment/60">
+                  <div className="rounded-sm bg-navy-soft px-4 py-3 text-sm text-paper/60">
                     Governing…
                   </div>
                 </div>
@@ -194,13 +194,13 @@ export function GovernedAssistant() {
             </div>
 
             {/* Presets */}
-            <div className="flex flex-wrap gap-2 border-t border-parchment/10 px-5 py-3">
+            <div className="flex flex-wrap gap-2 border-t border-white/10 px-5 py-3">
               {presets.map((p) => (
                 <button
                   key={p.label}
                   onClick={() => send(p.text)}
                   disabled={busy}
-                  className="rounded-full border border-parchment/25 px-3 py-1 font-sans text-xs text-parchment/80 transition-colors hover:bg-parchment hover:text-forest disabled:opacity-40"
+                  className="rounded-full border border-white/25 px-3 py-1 font-sans text-xs text-paper/80 transition-colors hover:bg-paper hover:text-navy disabled:opacity-40"
                 >
                   {p.label}
                 </button>
@@ -213,31 +213,31 @@ export function GovernedAssistant() {
                 e.preventDefault();
                 send(input);
               }}
-              className="flex gap-2 border-t border-parchment/10 p-3"
+              className="flex gap-2 border-t border-white/10 p-3"
             >
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about Gatekeeper…"
-                className="flex-1 rounded-sm bg-parchment/10 px-4 py-3 font-sans text-sm text-parchment placeholder:text-parchment/40 focus:outline-none focus:ring-1 focus:ring-gold"
+                className="flex-1 rounded-sm bg-white/10 px-4 py-3 font-sans text-sm text-paper placeholder:text-paper/40 focus:outline-none focus:ring-1 focus:ring-blue"
                 disabled={busy}
               />
-              <button type="submit" disabled={busy} className="btn-gold disabled:opacity-40">
+              <button type="submit" disabled={busy} className="btn-primary disabled:opacity-40">
                 Send
               </button>
             </form>
           </div>
 
           {/* Hash-chain panel */}
-          <div className="rounded-sm border border-parchment/15 bg-forest p-5 lg:col-span-2">
+          <div className="rounded-sm border border-white/15 bg-navy p-5 lg:col-span-2">
             <div className="flex items-center justify-between">
-              <h3 className="font-sans text-xs uppercase tracking-[0.18em] text-gold-soft">
+              <h3 className="font-sans text-xs uppercase tracking-[0.18em] text-blue-on">
                 Sealed record · hash chain
               </h3>
               <button
                 onClick={onVerify}
                 disabled={chain.length === 0}
-                className="font-sans text-xs text-parchment/70 underline-offset-4 hover:underline disabled:opacity-40"
+                className="font-sans text-xs text-paper/70 underline-offset-4 hover:underline disabled:opacity-40"
               >
                 Verify chain
               </button>
@@ -257,7 +257,7 @@ export function GovernedAssistant() {
 
             <div className="mt-4 max-h-[440px] space-y-3 overflow-y-auto">
               {chain.length === 0 && (
-                <p className="font-sans text-xs text-parchment/50">
+                <p className="font-sans text-xs text-paper/50">
                   No decisions yet. Send a message or try a preset — each governed
                   decision is sealed here.
                 </p>
@@ -265,10 +265,10 @@ export function GovernedAssistant() {
               {[...chain].reverse().map((r) => (
                 <div
                   key={r.hash}
-                  className="rounded-sm border border-parchment/10 bg-forest-deep/60 p-3"
+                  className="rounded-sm border border-white/10 bg-navy-deep/60 p-3"
                 >
                   <div className="flex items-center justify-between font-sans text-[11px]">
-                    <span className="text-parchment/50">#{r.index}</span>
+                    <span className="text-paper/50">#{r.index}</span>
                     <span
                       className={`font-semibold ${
                         r.thermal === "GREEN"
@@ -281,23 +281,23 @@ export function GovernedAssistant() {
                       {r.thermal} · {r.verdict}
                     </span>
                   </div>
-                  <p className="mt-1 font-sans text-[11px] text-parchment/60">{r.pack}</p>
-                  <p className="mt-1 text-xs italic text-parchment/70">“{r.maskedPreview}”</p>
+                  <p className="mt-1 font-sans text-[11px] text-paper/60">{r.pack}</p>
+                  <p className="mt-1 text-xs italic text-paper/70">“{r.maskedPreview}”</p>
                   {r.invariants.length > 0 && (
                     <ul className="mt-2 space-y-0.5">
                       {r.invariants.map((inv) => (
-                        <li key={inv} className="font-mono text-[10px] text-gold-soft/80">
+                        <li key={inv} className="font-mono text-[10px] text-blue-on/80">
                           {inv}
                         </li>
                       ))}
                     </ul>
                   )}
-                  <p className="mt-2 hash text-parchment/45">
-                    <span className="text-parchment/30">prev </span>
+                  <p className="mt-2 hash text-paper/45">
+                    <span className="text-paper/30">prev </span>
                     {r.prevHash.slice(0, 16)}…
                   </p>
-                  <p className="hash text-gold-soft/80">
-                    <span className="text-parchment/30">hash </span>
+                  <p className="hash text-blue-on/80">
+                    <span className="text-paper/30">hash </span>
                     {r.hash}
                   </p>
                 </div>
@@ -306,7 +306,7 @@ export function GovernedAssistant() {
           </div>
         </div>
 
-        <p className="mt-6 max-w-prose font-sans text-xs leading-relaxed text-parchment/55">
+        <p className="mt-6 max-w-prose font-sans text-xs leading-relaxed text-paper/55">
           {assistant.honesty}
         </p>
       </div>

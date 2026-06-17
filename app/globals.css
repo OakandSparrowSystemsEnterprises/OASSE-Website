@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --forest: #1b4332;
-  --gold: #c9a84c;
+  --blue: #6f90a8;
+  --navy: #243240;
 }
 
 html {
@@ -12,28 +12,28 @@ html {
 }
 
 body {
-  @apply bg-parchment text-ink font-serif antialiased;
+  @apply bg-paper text-ink font-serif antialiased;
 }
 
-/* Architectural, not illustrative: generous white space and quiet rules. */
+/* Light-led and architectural: generous white space, quiet rules. */
 .section {
   @apply mx-auto max-w-5xl px-6 py-20 md:py-28;
 }
 
 .eyebrow {
-  @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep;
+  @apply font-mono text-xs font-semibold uppercase tracking-[0.2em] text-blue-deep;
 }
 
 .h-section {
-  @apply font-serif text-3xl leading-tight md:text-4xl;
+  @apply font-serif text-3xl leading-tight text-ink md:text-4xl;
 }
 
 .lede {
-  @apply text-lg leading-relaxed text-forest/90;
+  @apply text-lg leading-relaxed text-muted;
 }
 
 .rule {
-  @apply border-t border-forest/10;
+  @apply border-t border-line;
 }
 
 .btn {
@@ -41,18 +41,15 @@ body {
 }
 
 .btn-primary {
-  @apply btn bg-forest text-parchment hover:bg-forest-mid;
+  @apply btn bg-blue text-white hover:bg-blue-deep;
 }
 
-.btn-gold {
-  @apply btn bg-gold text-forest-deep hover:bg-gold-deep hover:text-parchment;
-}
-
+/* Light secondary action: bordered, fills on hover. */
 .btn-ghost {
-  @apply btn border border-forest/30 text-forest hover:bg-forest hover:text-parchment;
+  @apply btn border border-line bg-white text-ink hover:border-blue hover:text-blue-deep;
 }
 
-/* Verdict palette — locked. */
+/* Verdict palette — the product's signal. */
 .verdict-GREEN {
   @apply text-verdict-green;
 }
