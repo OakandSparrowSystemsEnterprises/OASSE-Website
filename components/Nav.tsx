@@ -6,6 +6,7 @@ const links = [
   { href: "#assistant", label: "Live assistant" },
   { href: "#architecture", label: "Architecture" },
   { href: "#engagement", label: "Engagement" },
+  { href: "#open-source", label: "Open source" },
   { href: "#onboarding", label: "Onboarding" },
 ];
 

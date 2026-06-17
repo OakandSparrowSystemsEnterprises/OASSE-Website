@@ -2,7 +2,7 @@ import { openSource } from "@/content/site";
 
 export function BuiltInTheOpen() {
   return (
-    <section id="open-source" className="bg-paper-cool">
+    <section id="open-source" className="bg-paper">
       <div className="section">
         <p className="eyebrow">Built in the open</p>
         <h2 className="h-section mt-3 max-w-3xl">{openSource.heading}</h2>
