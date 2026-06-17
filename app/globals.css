@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue: #6f90a8;
+  --navy: #243240;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-serif antialiased;
+}
+
+/* Light-led and architectural: generous white space, quiet rules. */
+.section {
+  @apply mx-auto max-w-5xl px-6 py-20 md:py-28;
+}
+
+.eyebrow {
+  @apply font-mono text-xs font-semibold uppercase tracking-[0.2em] text-blue-deep;
+}
+
+/* Color is inherited from the section (ink on light, paper on dark) so the
+   heading never gets lost — e.g. on the dark navy assistant section. */
+.h-section {
+  @apply font-serif text-3xl leading-tight md:text-4xl;
+}
+
+.lede {
+  @apply text-lg leading-relaxed text-muted;
+}
+
+.rule {
+  @apply border-t border-line;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-sm px-6 py-3 font-sans text-sm font-semibold tracking-wide transition-colors;
+}
+
+.btn-primary {
+  @apply btn bg-blue text-white hover:bg-blue-deep;
+}
+
+/* Light secondary action: bordered, fills on hover. */
+.btn-ghost {
+  @apply btn border border-line bg-white text-ink hover:border-blue hover:text-blue-deep;
+}
+
+/* Verdict palette — the product's signal. */
+.verdict-GREEN {
+  @apply text-verdict-green;
+}
+.verdict-YELLOW {
+  @apply text-verdict-yellow;
+}
+.verdict-RED {
+  @apply text-verdict-red;
+}
+.bg-verdict-GREEN {
+  @apply bg-verdict-green;
+}
+.bg-verdict-YELLOW {
+  @apply bg-verdict-yellow;
+}
+.bg-verdict-RED {
+  @apply bg-verdict-red;
+}
+
+.hash {
+  @apply font-mono text-[11px] leading-tight break-all;
+}

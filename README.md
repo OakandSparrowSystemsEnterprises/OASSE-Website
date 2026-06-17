@@ -1,60 +1,125 @@
-# Oak & Sparrow Systems Enterprises — Website
+# OASSE-Website
 
-Marketing site and live governed-assistant demo for Gatekeeper, the pre-execution AI governance engine.
+The Oak & Sparrow Systems Enterprises `.com` — a full Next.js build that
+**explains Gatekeeper, runs onboarding on-site, and hosts the governed
+assistant**, deployed on Vercel.
 
-The site is a single self-contained page (`public/index.html`): hero, the problem, govern-the-decision, the verdict model, the live governed assistant, architecture and trust, who it is for, the 90-day pilot, on-site onboarding, mission, and footer.
+Built to the canonical [`docs/master-build-spec.md`](docs/master-build-spec.md).
 
-## Deploy on Railway
+---
 
-This repo runs as a tiny Node/Express static server so Railway can deploy it directly.
+## What it does (in the spec's priority order)
 
-1. Push this repo to GitHub.
-2. In Railway: New Project → Deploy from GitHub repo → pick this repo.
-3. Railway auto-detects Node, runs `npm install`, then `npm start`.
-4. The site serves on Railway's assigned URL. Health check is at `/healthz`.
-5. Add your custom domain in Railway → Settings → Networking.
+1. **Explains the product** — what Gatekeeper does and why it matters, in under
+   thirty seconds: govern the decision not the string, the GREEN/YELLOW/RED
+   verdict model, hash chaining (never blockchain), and the three outcomes.
+2. **Onboards on-site** — a five-step flow (Qualify → See the fit → The
+   engagement → Your details → Book the call) with **save-and-resume**, so a
+   qualified prospect can start without a sales call.
+3. **Hosts the governed assistant** — a live chatbot that answers questions
+   *and* demonstrates the product by governing its own responses in front of
+   the visitor, sealing each decision into a **real SHA-256 hash chain** you can
+   verify in the browser.
 
-No environment variables are required for the static site.
+## Tech stack
 
-## What is real vs simulated
+- **Next.js 14** (App Router) + **TypeScript**
+- **Tailwind CSS** — brand: light-blue scheme (cream paper, ink serif, slate-blue accent), architectural
+- No database required; the public build runs with **zero configuration**
 
-The governed assistant on the site answers and renders **real SHA-256 hash-chained records in the browser**, but the governance **verdicts are simulated** by a rules-based classifier (`classifyInput()` inside `public/index.html`). This is intentional and disclosed on the page. Production connects the same flow to the live Gatekeeper engine inside the client environment.
-
-## Swap-in seams (when going backend)
-
-Two stubs are in `server.js`, commented out and safe to ignore for the static deploy:
-
-- **Seam 1 — `POST /api/govern`**: replace the stub body to call the live Gatekeeper engine, then point `classifyInput()` in `index.html` at it instead of the in-browser rules. This makes the demo's verdicts real.
-- **Seam 2 — `POST /api/onboard`**: replace to persist onboarding submissions (database, CRM, or email). Onboarding is currently client-side only.
-
-## Local run
+## Project layout
 
 ```
+app/
+  layout.tsx, page.tsx, globals.css   # shell + page order (spec §6)
+  api/classify/route.ts               # Seam 1 (live Gatekeeper engine)
+  api/chat/route.ts                   # Seam 2 (grounded answer model)
+  api/onboarding/route.ts             # lead capture / webhook
+components/                           # one component per site section
+lib/
+  classifier.ts                       # browser governance demo + Seam 1
+  hashchain.ts                        # real SHA-256 hash chaining
+  wiki.ts                             # intent-aware retrieval over the KB + Seam 2 grounding
+content/
+  site.ts                             # all canonical copy (single source)
+  seam2_knowledge_base.json           # the assistant's definitive answer base (18 entries)
+docs/
+  master-build-spec.md                # the spec this build implements
+  seam2-knowledge-base.md             # how the KB is wired (retrieval vs model)
+```
+
+## The two swap-in seams (for the CTO)
+
+The public build is honest by design: **answers are live, governance is a
+demonstration.** Two functions are the only things that change to make it
+production-real — nothing else (hash chain, panel, chat flow) moves:
+
+- **Seam 1 — `classifyInput()`** (`lib/classifier.ts` + `app/api/classify`).
+  Set `GATEKEEPER_API_URL` and the verdict comes from the live engine's
+  `/evaluate` instead of the in-browser classifier.
+- **Seam 2 — grounding** (`lib/wiki.ts` + `app/api/chat`). Set
+  `ANTHROPIC_API_KEY` (and `CHAT_MODEL`, default `claude-opus-4-8`) to ground a
+  configured model on the wiki instead of using grounded retrieval.
+
+## Local development
+
+```bash
 npm install
-npm start
-# open http://localhost:3000
+cp .env.example .env.local   # optional — all keys are optional
+npm run dev                  # http://localhost:3000
 ```
 
-## Static-only alternative
+## Deploy on Vercel
 
-If you do not need a backend, this site can also deploy as pure static hosting (e.g. Vercel) by serving `public/index.html` directly. Railway is the right target only when you plan to wire the seams above.
+Next.js is Vercel-native, so this is zero-config — no `vercel.json` needed.
 
-## Open decisions (flagged, not yet locked)
+1. In Vercel: **Add New → Project → Import** this GitHub repo, and pick the
+   deploy branch.
+2. Vercel auto-detects Next.js: build `next build`, output handled
+   automatically (the App Router API routes run as serverless functions). No
+   build settings to change.
+3. (Optional) Add Environment Variables from [`.env.example`](.env.example):
+   - `NEXT_PUBLIC_SCHEDULING_URL` — your onboarding booking link
+   - `GATEKEEPER_API_URL` — wire Seam 1 to the live engine
+   - `ANTHROPIC_API_KEY` / `CHAT_MODEL` — wire Seam 2 to a live model
+   - `ONBOARDING_WEBHOOK_URL` — forward captured leads to a CRM/Slack
+4. Deploy, then add the custom domain in **Vercel → Settings → Domains**:
+   `oakandsparrowsystemsenterprise.com`.
 
-- **Domain**: `.io` (currently live on Vercel) vs `.com`. Point DNS and repo at one.
-- **Lead language**: "manager in the room" vs "bouncer" — pending reconciliation across deck and canonical docs.
-- **Pricing numbers**: onboarding fee, monthly floor, per-band artifact prices — pending the usage analysis. The site references the structure, not figures.
+> The product's real Gatekeeper engine runs on client networks, not in this
+> deployment — so the Vercel host stays light: it serves the marketing site,
+> the grounded-wiki assistant, and the seam stubs.
 
-## Structure
+## Open items carried from the spec (`VERIFY`)
 
-```
-.
-├── public/
-│   └── index.html      # the entire site, self-contained
-├── server.js           # minimal Express static server + seam stubs
-├── package.json
-├── railway.json        # Railway build/deploy config + health check
-├── Procfile
-├── .gitignore
-└── README.md
-```
+- **Lead language** — "manager in the room" vs the harder compliance line
+  ("your employees use AI, we make sure it's legal") still being reconciled
+  with Nick and Scott. The build currently runs the manager-in-the-room line;
+  the hero is the surface that changes once this is decided.
+  (`content/site.ts → positioning`.)
+- **Pricing** — onboarding fee / monthly floor are gated behind the call until
+  the usage analysis lands. (`content/site.ts → engagement.pricingNote`.)
+- **Engine internals** — keep model names, versions, and rule counts out of
+  public copy; verify any specific figure with the CTO.
+
+## Brand
+
+Light-blue scheme, matched to the Gatekeeper page: cream paper `#F4F1EA`,
+near-black ink `#1A1A1A` serif headlines, a single muted slate-blue accent
+`#6F90A8` (`deep #557791`, `on-navy #9FBDD2`), gray body `#56606A`, navy
+`#243240` as the dark anchor for the assistant panel and footer. Verdict
+signal kept distinct: GREEN `#2D6A4F`, YELLOW `#B07D1E`, RED `#B0301F` on
+light; brighter tints (`#7FD3AA`, `#E6CD7E`, `#FF9B8C`) on navy. Defined once
+in [`tailwind.config.ts`](tailwind.config.ts).
+
+> The accent `#6F90A8` is sampled by eye from the Gatekeeper hero. For a
+> pixel-exact match, sample the computed color of the "legal." span / primary
+> button on the live `.com` and drop it into `blue.DEFAULT`.
+
+> Note: the rest of the brand collateral (docs, logs, sponsorship sheets)
+> remains green-and-gold; the site and collateral diverge until the team
+> decides whether the brand follows the site to blue.
+
+## License
+
+[Apache License 2.0](LICENSE). © 2026 Oak and Sparrow Systems Enterprises.
