@@ -63,6 +63,23 @@ const INDUSTRIES = Object.keys(PACKS);
 const REGIMES = ["HIPAA", "Financial / GLBA", "Legal / privilege", "FERPA", "Other / mixed"];
 const VOLUMES = ["Under 50 staff", "50–250 staff", "250–1,000 staff", "Over 1,000 staff"];
 
+// Onboarding requires a company email — free/personal inboxes are rejected so
+// leads are real, qualified prospects.
+const FREE_EMAIL_DOMAINS = new Set([
+  "gmail.com", "googlemail.com", "yahoo.com", "yahoo.co.uk", "ymail.com",
+  "hotmail.com", "hotmail.co.uk", "outlook.com", "live.com", "msn.com",
+  "aol.com", "icloud.com", "me.com", "mac.com", "proton.me", "protonmail.com",
+  "pm.me", "gmx.com", "gmx.net", "mail.com", "yandex.com", "zoho.com",
+  "hey.com", "fastmail.com", "tutanota.com", "qq.com", "163.com",
+]);
+
+function isCompanyEmail(email: string): boolean {
+  const m = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/.exec(email.trim().toLowerCase());
+  if (!m) return false;
+  return !FREE_EMAIL_DOMAINS.has(m[1]);
+}
+
+
 export function Onboarding() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormState>(EMPTY);
@@ -99,7 +116,9 @@ export function Onboarding() {
   const set = (k: keyof FormState, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   const canQualify = form.industry && form.regime && form.volume;
-  const canCapture = form.company.trim() && /\S+@\S+\.\S+/.test(form.email);
+  const emailEntered = form.email.trim().length > 0;
+  const emailIsCompany = isCompanyEmail(form.email);
+  const canCapture = !!form.company.trim() && emailIsCompany;
 
   async function submitLead() {
     setSubmitting(true);
@@ -261,8 +280,13 @@ export function Onboarding() {
                 <Field label="Company *">
                   <Text value={form.company} onChange={(v) => set("company", v)} placeholder="Acme Health" />
                 </Field>
-                <Field label="Work email *">
-                  <Text value={form.email} onChange={(v) => set("email", v)} placeholder="jane@acme.com" type="email" />
+                <Field label="Company email *">
+                  <Text value={form.email} onChange={(v) => set("email", v)} placeholder="jane@yourcompany.com" type="email" />
+                  {emailEntered && !emailIsCompany && (
+                    <p className="mt-2 text-xs text-verdict-red">
+                      Please use your company email. Personal inboxes (Gmail, Outlook, iCloud…) aren&apos;t accepted.
+                    </p>
+                  )}
                 </Field>
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-4">

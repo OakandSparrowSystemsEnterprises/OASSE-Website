@@ -15,6 +15,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "company and email are required" }, { status: 400 });
   }
 
+  // Onboarding requires a company email — reject free/personal inboxes
+  // (the client enforces this too; this is defense in depth).
+  const FREE_EMAIL_DOMAINS = new Set([
+    "gmail.com", "googlemail.com", "yahoo.com", "yahoo.co.uk", "ymail.com",
+    "hotmail.com", "hotmail.co.uk", "outlook.com", "live.com", "msn.com",
+    "aol.com", "icloud.com", "me.com", "mac.com", "proton.me", "protonmail.com",
+    "pm.me", "gmx.com", "gmx.net", "mail.com", "yandex.com", "zoho.com",
+    "hey.com", "fastmail.com", "tutanota.com", "qq.com", "163.com",
+  ]);
+  const m = /^[^\s@]+@([^\s@]+\.[^\s@]+)$/.exec(lead.email.trim().toLowerCase());
+  if (!m || FREE_EMAIL_DOMAINS.has(m[1])) {
+    return NextResponse.json(
+      { error: "a company email is required (personal inboxes are not accepted)" },
+      { status: 400 },
+    );
+  }
+
   const payload = {
     receivedAt: new Date().toISOString(),
     industry: lead.industry ?? null,
