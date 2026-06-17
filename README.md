@@ -2,7 +2,7 @@
 
 The Oak & Sparrow Systems Enterprises `.com` — a full Next.js build that
 **explains Gatekeeper, runs onboarding on-site, and hosts the governed
-assistant**, ready to point Railway at.
+assistant**, deployed on Vercel.
 
 Built to the canonical [`docs/master-build-spec.md`](docs/master-build-spec.md).
 
@@ -24,7 +24,7 @@ Built to the canonical [`docs/master-build-spec.md`](docs/master-build-spec.md).
 ## Tech stack
 
 - **Next.js 14** (App Router) + **TypeScript**
-- **Tailwind CSS** — brand: forest green & gold, Georgia serif, architectural
+- **Tailwind CSS** — brand: light-blue scheme (cream paper, ink serif, slate-blue accent), architectural
 - No database required; the public build runs with **zero configuration**
 
 ## Project layout
@@ -65,25 +65,34 @@ cp .env.example .env.local   # optional — all keys are optional
 npm run dev                  # http://localhost:3000
 ```
 
-## Deploy on Railway
+## Deploy on Vercel
 
-1. Create a new Railway project → **Deploy from GitHub repo** → select this repo
-   and the deploy branch.
-2. Railway auto-detects Next.js (config is pinned in `railway.json` /
-   `nixpacks.toml`): build `npm run build`, start `npm run start`. The start
-   script binds to Railway's `$PORT` automatically.
-3. (Optional) Set service variables from [`.env.example`](.env.example):
+Next.js is Vercel-native, so this is zero-config — no `vercel.json` needed.
+
+1. In Vercel: **Add New → Project → Import** this GitHub repo, and pick the
+   deploy branch.
+2. Vercel auto-detects Next.js: build `next build`, output handled
+   automatically (the App Router API routes run as serverless functions). No
+   build settings to change.
+3. (Optional) Add Environment Variables from [`.env.example`](.env.example):
    - `NEXT_PUBLIC_SCHEDULING_URL` — your onboarding booking link
    - `GATEKEEPER_API_URL` — wire Seam 1 to the live engine
    - `ANTHROPIC_API_KEY` / `CHAT_MODEL` — wire Seam 2 to a live model
    - `ONBOARDING_WEBHOOK_URL` — forward captured leads to a CRM/Slack
-4. Deploy. Point your domain (`.io` and/or `.com`) at the Railway service.
+4. Deploy, then add the custom domain in **Vercel → Settings → Domains**:
+   `oakandsparrowsystemsenterprise.com`.
+
+> The product's real Gatekeeper engine runs on client networks, not in this
+> deployment — so the Vercel host stays light: it serves the marketing site,
+> the grounded-wiki assistant, and the seam stubs.
 
 ## Open items carried from the spec (`VERIFY`)
 
-- **Lead language** — "manager in the room" vs "bouncer" still being reconciled;
-  confirm with leadership before go-live. (`content/site.ts → positioning`.)
-- **Deploy domain** — confirm `.io` vs `.com` and point both at one deploy.
+- **Lead language** — "manager in the room" vs the harder compliance line
+  ("your employees use AI, we make sure it's legal") still being reconciled
+  with Nick and Scott. The build currently runs the manager-in-the-room line;
+  the hero is the surface that changes once this is decided.
+  (`content/site.ts → positioning`.)
 - **Pricing** — onboarding fee / monthly floor are gated behind the call until
   the usage analysis lands. (`content/site.ts → engagement.pricingNote`.)
 - **Engine internals** — keep model names, versions, and rule counts out of
@@ -91,11 +100,21 @@ npm run dev                  # http://localhost:3000
 
 ## Brand
 
-Colors are matched to the live site, `oakandsparrowsystemsenterprise.io`:
-forest `#1B4332`, forest-mid `#2D6A4F`, gold `#C9A84C`, gold-deep `#A8862F`,
-paper `#FBFBF8`, ink `#16241D`. Verdict palette: GREEN `#2D6A4F`,
-YELLOW `#C9A84C`, RED `#B0301F` (with brighter tints for dark backgrounds).
-Defined once in [`tailwind.config.ts`](tailwind.config.ts).
+Light-blue scheme, matched to the Gatekeeper page: cream paper `#F4F1EA`,
+near-black ink `#1A1A1A` serif headlines, a single muted slate-blue accent
+`#6F90A8` (`deep #557791`, `on-navy #9FBDD2`), gray body `#56606A`, navy
+`#243240` as the dark anchor for the assistant panel and footer. Verdict
+signal kept distinct: GREEN `#2D6A4F`, YELLOW `#B07D1E`, RED `#B0301F` on
+light; brighter tints (`#7FD3AA`, `#E6CD7E`, `#FF9B8C`) on navy. Defined once
+in [`tailwind.config.ts`](tailwind.config.ts).
+
+> The accent `#6F90A8` is sampled by eye from the Gatekeeper hero. For a
+> pixel-exact match, sample the computed color of the "legal." span / primary
+> button on the live `.com` and drop it into `blue.DEFAULT`.
+
+> Note: the rest of the brand collateral (docs, logs, sponsorship sheets)
+> remains green-and-gold; the site and collateral diverge until the team
+> decides whether the brand follows the site to blue.
 
 ## License
 

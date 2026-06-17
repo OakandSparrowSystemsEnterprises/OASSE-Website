@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
  * Onboarding lead capture (step 4 of the on-site flow).
  *
  * Default: validate and log the lead server-side. Set ONBOARDING_WEBHOOK_URL
- * in Railway to forward leads to a CRM, Zapier, or Slack incoming webhook.
+ * in Vercel to forward leads to a CRM, Zapier, or Slack incoming webhook.
  * The scheduling link (step 5) is the conversion action and is handled on the
  * client via NEXT_PUBLIC_SCHEDULING_URL.
  */
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Always log so leads are recoverable from Railway logs even without a CRM.
+  // Always log so leads are recoverable from the deployment logs even without a CRM.
   console.log("[onboarding] lead captured:", JSON.stringify(payload));
 
   return NextResponse.json({ ok: true });

@@ -173,9 +173,13 @@ matching the verdict palette already in the build.
 **VERIFY:** Confirm the deploy domain (.io vs .com) before launch so DNS and the
 repo point to one place.
 
-> Build note: this repo targets **Railway** for the actual website build (per the
-> current owner direction), implemented with Next.js. The chatbot is embedded as
-> a React component and keeps its state in memory per the constraint above.
+> Build note (decisions locked): implemented with **Next.js**, deployed on
+> **Vercel** (its native host), at the **`.com`** the team already owns. The
+> Vercel host stays light because the real Gatekeeper engine runs on client
+> networks, not in this deployment. The chatbot is embedded as a React
+> component and keeps its state in memory per the constraint above. Lead
+> language ("manager in the room" vs the harder compliance line) is the one
+> open item, to reconcile with Nick and Scott.
 
 ## 8. Build order for today
 

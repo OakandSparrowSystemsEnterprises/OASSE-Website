@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
  * works with zero configuration.
  *
  * Production: set GATEKEEPER_API_URL (and optionally GATEKEEPER_CLIENT_ID) in
- * the Railway service variables. This route then proxies the text to the live
+ * the Vercel project environment variables. This route then proxies the text to the live
  * Gatekeeper /evaluate endpoint and returns the real verdict, pack, and
  * invariants. The browser code does not change.
  */

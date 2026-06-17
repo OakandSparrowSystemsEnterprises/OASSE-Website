@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `${company.product} — ${positioning.lead}`,
   description:
     "Gatekeeper governs your AI on your own network: it checks every decision against your rules before the AI acts, and keeps a sealed, tamper-evident record. For legal, insurance, healthcare, and community banking.",
-  metadataBase: new URL("https://oakandsparrowsystemsenterprise.io"),
+  metadataBase: new URL("https://oakandsparrowsystemsenterprise.com"),
   openGraph: {
     title: `${company.product} — the manager in the room for your AI`,
     description:

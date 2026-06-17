@@ -9,8 +9,9 @@ export const company = {
   name: "Oak & Sparrow Systems Enterprises",
   short: "Oak & Sparrow",
   product: "Gatekeeper",
-  // verify: ".io vs .com — point both at the same deploy before launch.
-  domainNote: "oakandsparrowsystemsenterprise.io",
+  // Website domain (decided): .com, deployed on Vercel. Staff email stays on
+  // the .io domain that the team already uses.
+  domain: "oakandsparrowsystemsenterprise.com",
   email: "hello@oakandsparrowsystemsenterprise.io",
 };
 
