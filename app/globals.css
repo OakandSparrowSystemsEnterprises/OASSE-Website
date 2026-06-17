@@ -11,6 +11,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor jumps (nav + /about#team) must clear the sticky header, else the
+   target heading lands hidden underneath and the link looks broken. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   @apply bg-paper text-ink font-serif antialiased;
 }
