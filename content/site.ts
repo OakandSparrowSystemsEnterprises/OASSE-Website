@@ -102,7 +102,7 @@ export const about = {
       {
         name: "Nick Silva",
         role: "Chief Operating Officer",
-        bio: "Leads the company's operations and execution.",
+        bio: "Leads the company's operations and execution. His background in journalism, office management, and logistics gives him a strong ability to organize complex information, guide teams while keeping them aligned, and balance practical execution with clear communication.",
       },
     ],
     leadership: [
