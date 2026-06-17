@@ -7,6 +7,7 @@ import { WhyNow } from "@/components/WhyNow";
 import { Engagement } from "@/components/Engagement";
 import { Onboarding } from "@/components/Onboarding";
 import { WhoItsFor } from "@/components/WhoItsFor";
+import { BuiltInTheOpen } from "@/components/BuiltInTheOpen";
 
 // Page order is locked by the master spec, section 6.
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Engagement />
       <Onboarding />
       <WhoItsFor />
+      <BuiltInTheOpen />
     </>
   );
 }

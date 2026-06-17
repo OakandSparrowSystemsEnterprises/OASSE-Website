@@ -15,6 +15,43 @@ export const company = {
   email: "hello@oakandsparrowsystemsenterprise.io",
 };
 
+// Verified live against GitHub: both repos public, both MIT. LinkedIn is
+// optional and only renders when NEXT_PUBLIC_LINKEDIN_URL is set.
+export const links = {
+  githubOrg: "https://github.com/OakandSparrowSystemsEnterprises",
+};
+
+// "Built in the open" — open-source proof points. Same pattern as Gatekeeper:
+// a deterministic decision gate before an action runs, plus a cryptographically
+// sealed record of what happened.
+export const openSource = {
+  heading: "Built in the open.",
+  intro:
+    "Two open-source projects, both MIT licensed and public, show the same pattern that runs through Gatekeeper: a deterministic gate that checks an action before it executes, and a cryptographically sealed record of what happened. They are evidence the approach works, in code you can read.",
+  projects: [
+    {
+      name: "Sentinel-Med",
+      gate: "ALLOW / HOLD / BLOCK",
+      body:
+        "A human-in-the-loop medical chatbot. A deterministic classifier is the safety floor; the model can only escalate caution, never override a block. Every decision is written to a tamper-evident hash chain.",
+      context: "Built for the AI Collective Tri-Valley “Humans In AI” track.",
+      repo: "OakandSparrowSystemsEnterprises/hackathon",
+      href: "https://github.com/OakandSparrowSystemsEnterprises/hackathon",
+    },
+    {
+      name: "Oak & Sparrow OS",
+      gate: "PASS / HOLD / VETO",
+      body:
+        "An on-device agent-governance kernel for Android. Risky actions are held for approval; every decision is Ed25519-signed and content-addressed in an audit log. Runs entirely on-device, no cloud — the same on-prem principle Gatekeeper enforces for the enterprise.",
+      context: "Five releases, active.",
+      repo: "thespacekyd-eng/Oak-Sparrow-OS",
+      href: "https://github.com/thespacekyd-eng/Oak-Sparrow-OS",
+    },
+  ],
+  contributors:
+    "Built together by Sky, Caleb Strom, and the Oak & Sparrow team, with AI assistance.",
+};
+
 // verify: "manager in the room" vs "bouncer" still being reconciled across
 // the deck and canonical docs. Confirm with leadership before go-live.
 export const positioning = {
