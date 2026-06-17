@@ -20,6 +20,9 @@ export function Footer() {
             {positioning.mission} {positioning.philosophy}
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs">
+            <a href="/about" className="text-blue-on underline-offset-4 hover:underline">
+              About
+            </a>
             <a
               href={links.githubOrg}
               target="_blank"
