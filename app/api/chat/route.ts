@@ -121,6 +121,43 @@ function validateMessages(raw: unknown): { ok: true; messages: Msg[] } | { ok: f
   return { ok: true, messages: cleaned };
 }
 
+// ---------- diagnostics ----------
+// Open /api/chat in a browser (a GET) to check, in plain English, whether the
+// answer engine is wired. Never returns the key itself — only whether it is
+// present and well-formed. No Anthropic call, so it costs nothing.
+export async function GET() {
+  const raw = process.env.ANTHROPIC_API_KEY;
+  const key = raw?.trim();
+  const keyPresent = Boolean(key);
+  const keyLooksValid = Boolean(key && key.startsWith("sk-ant-") && key.length > 40);
+  const keyHadSurroundingWhitespace = Boolean(raw && raw !== raw.trim());
+
+  let status: string;
+  let hint: string;
+  if (!keyPresent) {
+    status = "NOT WIRED — no key reaching this deployment";
+    hint =
+      "ANTHROPIC_API_KEY is not set on the deployment serving this page. In Vercel: add it (Production scope), then REDEPLOY so a fresh build picks it up. Confirm you're testing the production URL, not an older preview.";
+  } else if (!keyLooksValid) {
+    status = "KEY MALFORMED";
+    hint =
+      "A key is present but does not look like an Anthropic key (it should start with sk-ant- and be long). Re-copy it from console.anthropic.com → API Keys and paste with no extra characters.";
+  } else {
+    status = "KEY PRESENT AND WELL-FORMED";
+    hint =
+      "The key is wired correctly. If the chat still hands off, the cause is the key's validity or account credit. Check console.anthropic.com → Billing: an account with no credit makes the model call fail, and the chat degrades to the contact handoff by design.";
+  }
+
+  return NextResponse.json({
+    status,
+    keyPresent,
+    keyLooksValid,
+    keyHadSurroundingWhitespace,
+    model: process.env.CHAT_MODEL || "claude-sonnet-4-6",
+    hint,
+  });
+}
+
 // ---------- handler ----------
 export async function POST(req: NextRequest) {
   try {
@@ -142,12 +179,14 @@ export async function POST(req: NextRequest) {
     const v = validateMessages((body as any)?.messages);
     if (!v.ok) return NextResponse.json({ error: v.reason }, { status: 400 });
 
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    // Trim guards against a key pasted into Vercel with a trailing newline or
+    // surrounding whitespace, which would make the x-api-key header invalid (401).
+    const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
     if (!apiKey) {
       return NextResponse.json({
         answer: FALLBACK,
         grounded: false,
-        note: "Answer engine not yet configured.",
+        note: "no_api_key_reaching_function",
       });
     }
 
@@ -188,7 +227,18 @@ export async function POST(req: NextRequest) {
     if (!resp.ok) {
       const detail = await resp.text().catch(() => "");
       console.error("Anthropic API error:", resp.status, detail.slice(0, 500));
-      return NextResponse.json({ answer: FALLBACK, grounded: false }, { status: 200 });
+      // Surface the error CATEGORY (never the key) so the cause is diagnosable
+      // from the response: 401 = bad/expired key, 400 = often low credit, 429 = rate.
+      let errType = "";
+      try {
+        errType = JSON.parse(detail)?.error?.type ?? "";
+      } catch {
+        /* non-JSON body */
+      }
+      return NextResponse.json(
+        { answer: FALLBACK, grounded: false, note: `upstream_${resp.status}${errType ? "_" + errType : ""}` },
+        { status: 200 },
+      );
     }
 
     const data = await resp.json();
