@@ -1,0 +1,359 @@
+{
+  "_meta": {
+    "name": "OASSE External Assistant Knowledge Base",
+    "tier": "external-cleared",
+    "version": "2.0",
+    "voice": "honest, plain, no hype, no em dashes",
+    "rule": "Answer only from these entries. Off-base questions get the handoff. Never invent.",
+    "excluded_by_design": [
+      "ownership and internal financial details",
+      "individual team members beyond the public leadership page",
+      "exact pricing figures (structure only)",
+      "internal roadmap and unreleased dates",
+      "partner and pilot specifics under confidentiality",
+      "internal forecasting records and research internals"
+    ]
+  },
+  "fallback": "I can't answer that one from what I know about Gatekeeper. The team can help directly. You can reach out through the contact link or book a walkthrough, and a person will follow up.",
+  "entries": [
+    {
+      "id": "what_is",
+      "topics": [
+        "what is gatekeeper",
+        "what do you do",
+        "what does gatekeeper do",
+        "overview"
+      ],
+      "question_intents": [
+        "What is Gatekeeper?",
+        "What does your product do?",
+        "Explain Gatekeeper"
+      ],
+      "answer": "Gatekeeper is a deterministic pre-execution governance engine for AI. It sits in front of an AI system's actions and checks each one against a set of rules before it runs. Every action is classified, allowed, held, or blocked, and a sealed record of the decision is produced. The point is simple: govern what the AI is about to do, at the moment it tries to do it, and keep a verifiable record of every call."
+    },
+    {
+      "id": "govern_decision",
+      "topics": [
+        "govern the decision",
+        "govern the action",
+        "not the string",
+        "how it works"
+      ],
+      "question_intents": [
+        "How is this different from a content filter?",
+        "What do you actually govern?"
+      ],
+      "answer": "Gatekeeper governs the decision, not the wording. Instead of scanning text for bad words, it evaluates the action an AI is about to take against policy, before execution. That means it catches the thing that matters, what the system is about to do, rather than just how a prompt or response is phrased."
+    },
+    {
+      "id": "verdict_model",
+      "topics": [
+        "verdict",
+        "green",
+        "yellow",
+        "red",
+        "classification",
+        "thermal"
+      ],
+      "question_intents": [
+        "What are the verdicts?",
+        "What does green yellow red mean?"
+      ],
+      "answer": "Every action gets one of three verdicts before it runs. Green means it passes policy and proceeds. Yellow means it needs a hold or review. Red means it is blocked and does not execute. The verdict is deterministic, the same action under the same policy always gets the same result."
+    },
+    {
+      "id": "deterministic",
+      "topics": [
+        "deterministic",
+        "consistent",
+        "reliable",
+        "repeatable",
+        "same answer"
+      ],
+      "question_intents": [
+        "Is it deterministic?",
+        "Will it give the same answer every time?"
+      ],
+      "answer": "Yes. Gatekeeper's enforcement is deterministic, not a model guessing. The same action evaluated against the same policy produces the same verdict every time. That repeatability is the point, it is what makes the decisions auditable and defensible rather than probabilistic."
+    },
+    {
+      "id": "hash_chaining",
+      "topics": [
+        "hash chain",
+        "hash chaining",
+        "blockchain",
+        "record",
+        "tamper",
+        "evidence"
+      ],
+      "question_intents": [
+        "Do you use blockchain?",
+        "How is the record tamper-evident?"
+      ],
+      "answer": "Each decision is sealed into a record that is hash-chained to the ones before it, so the history is tamper-evident. This is not a blockchain and there is no token. It is a cryptographic chain of decision records, which means anyone can verify the sequence has not been altered after the fact."
+    },
+    {
+      "id": "decision_record",
+      "topics": [
+        "decision record",
+        "audit trail",
+        "proof",
+        "reconstruct",
+        "accountability"
+      ],
+      "question_intents": [
+        "What do you keep as proof?",
+        "Can you reconstruct what happened?"
+      ],
+      "answer": "For every action, Gatekeeper produces a decision record: what was attempted, which policy applied, the verdict, and the reasoning, sealed and chained. That record lets you reconstruct exactly what the AI did and why it was allowed or blocked, which is the evidence trail regulators and counsel actually ask for."
+    },
+    {
+      "id": "architecture",
+      "topics": [
+        "architecture",
+        "on premises",
+        "on-prem",
+        "deployment",
+        "where does it run",
+        "cloud"
+      ],
+      "question_intents": [
+        "Where does it run?",
+        "Is it on-prem?",
+        "Does my data leave?"
+      ],
+      "answer": "Gatekeeper is built to run on the customer's own infrastructure, on premises or in their own environment, so sensitive data and decision records do not have to leave their control. This matters most for regulated settings where data sovereignty is a hard requirement."
+    },
+    {
+      "id": "data_handling",
+      "topics": [
+        "data",
+        "store",
+        "prompts",
+        "privacy",
+        "retain",
+        "sensitive"
+      ],
+      "question_intents": [
+        "Do you store our prompts?",
+        "What happens to our data?"
+      ],
+      "answer": "Gatekeeper is designed so prompts are not retained and sensitive data stays in the customer's environment. The engine evaluates actions and seals decision records, it is not built to harvest or hold your underlying data."
+    },
+    {
+      "id": "three_outcomes",
+      "topics": [
+        "outcomes",
+        "benefits",
+        "compute",
+        "cost",
+        "water",
+        "why it matters"
+      ],
+      "question_intents": [
+        "What do customers get out of it?",
+        "What are the benefits?"
+      ],
+      "answer": "Three outcomes lead the value. Lower compute cost, because blocked and held actions do not burn resources running things that should not run. Resource savings that follow from that. And cryptographic accountability, a verifiable record of every AI decision. Governance and safety come along with those, but the outcomes customers feel first are cost, efficiency, and provable accountability."
+    },
+    {
+      "id": "pricing",
+      "topics": [
+        "price",
+        "pricing",
+        "cost",
+        "how much",
+        "plans"
+      ],
+      "question_intents": [
+        "How much does it cost?",
+        "What is the pricing?"
+      ],
+      "answer": "Pricing is usage based, tied to the infrastructure it governs rather than per seat, with options that can align cost to value delivered. For specific numbers and a quote that fits your setup, the best path is to book a walkthrough with the team."
+    },
+    {
+      "id": "pricing_why_not_seat",
+      "topics": [
+        "per seat",
+        "seat",
+        "why usage",
+        "licensing model"
+      ],
+      "question_intents": [
+        "Why not per seat?",
+        "Why usage based?"
+      ],
+      "answer": "Gatekeeper governs AI actions, not people at desks, so usage based pricing fits what it actually does. The cost tracks the volume of decisions and the infrastructure it protects, which is the thing that scales, rather than how many employees have a login."
+    },
+    {
+      "id": "compliance",
+      "topics": [
+        "compliance",
+        "regulation",
+        "hipaa",
+        "regulated",
+        "audit",
+        "legal"
+      ],
+      "question_intents": [
+        "Does this help with compliance?",
+        "Is it HIPAA friendly?"
+      ],
+      "answer": "Gatekeeper is built for regulated environments. The deterministic verdicts and sealed decision records give you a defensible, reconstructable account of every AI action, which is what compliance and audit processes need. It runs in your own environment so data handling can meet strict requirements. For how it maps to a specific framework, the team can walk through the details."
+    },
+    {
+      "id": "pilot",
+      "topics": [
+        "pilot",
+        "90 day",
+        "90-day",
+        "trial",
+        "try it",
+        "shadow"
+      ],
+      "question_intents": [
+        "Can we pilot it?",
+        "How do we try it?"
+      ],
+      "answer": "Yes, there is a structured pilot. It starts in an observation phase where Gatekeeper watches and records decisions without blocking, so you can see what it would do against real activity, then moves to active enforcement once the policy set is tuned to your environment. Booking a walkthrough is the way to scope a pilot for your case."
+    },
+    {
+      "id": "why_now",
+      "topics": [
+        "why now",
+        "why does this matter",
+        "agentic",
+        "autonomy",
+        "models getting stronger"
+      ],
+      "question_intents": [
+        "Why is this needed now?",
+        "Why does this matter today?"
+      ],
+      "answer": "AI systems are increasingly taking actions on their own, not just generating text. As models get more capable and more autonomous, the gap between what an AI can do and what it should be allowed to do becomes a real risk. Gatekeeper closes that gap by governing actions before they execute and keeping proof of every decision, which is exactly what becomes necessary as autonomy rises."
+    },
+    {
+      "id": "who_for",
+      "topics": [
+        "who is it for",
+        "who uses",
+        "industries",
+        "customers",
+        "fit"
+      ],
+      "question_intents": [
+        "Who is this for?",
+        "What industries?"
+      ],
+      "answer": "Gatekeeper fits organizations deploying AI where the actions carry real consequence and accountability is required, especially regulated sectors and any setting where you need to prove what your AI did and did not do. If you are putting AI into a workflow that touches sensitive data or high-stakes decisions, that is the fit."
+    },
+    {
+      "id": "different_from_detection",
+      "topics": [
+        "different",
+        "difference",
+        "detection",
+        "monitoring",
+        "observability",
+        "versus"
+      ],
+      "question_intents": [
+        "How is this different from monitoring tools?",
+        "Is this just observability?"
+      ],
+      "answer": "Monitoring and detection tools tell you what already happened, after the fact. Gatekeeper acts before execution, it decides whether the action runs at all, and seals the proof. It is prevention plus evidence, not after-the-fact observation."
+    },
+    {
+      "id": "demo_honesty",
+      "topics": [
+        "is this real",
+        "live",
+        "demo",
+        "are the verdicts real",
+        "is this a demo"
+      ],
+      "question_intents": [
+        "Is what I am seeing live?",
+        "Are these real verdicts?"
+      ],
+      "answer": "Honest answer: this assistant's responses are live, and the governance verdicts shown in the demo are demonstrated to show how the engine classifies actions. The production engine runs the same deterministic logic in a customer's own environment. We would rather tell you plainly what is live and what is demonstrated than oversell it."
+    },
+    {
+      "id": "company",
+      "topics": [
+        "company",
+        "who are you",
+        "oak and sparrow",
+        "about",
+        "oasse"
+      ],
+      "question_intents": [
+        "Who builds this?",
+        "What company is this?"
+      ],
+      "answer": "Gatekeeper is built by Oak and Sparrow Systems Enterprises. The company builds governance infrastructure for AI, with the goal of making AI systems accountable and safe to deploy in settings where what the AI does actually matters. You can read more on the About page."
+    },
+    {
+      "id": "patent",
+      "topics": [
+        "patent",
+        "intellectual property",
+        "proprietary",
+        "novel"
+      ],
+      "question_intents": [
+        "Is it patented?",
+        "Is the technology protected?"
+      ],
+      "answer": "The core technology is patent pending. Beyond that, the specifics of the IP are best discussed directly with the team."
+    },
+    {
+      "id": "onboarding",
+      "topics": [
+        "onboard",
+        "onboarding",
+        "get started",
+        "next step",
+        "sign up"
+      ],
+      "question_intents": [
+        "How do we get started?",
+        "What is the first step?"
+      ],
+      "answer": "The first step is a walkthrough. Use the contact or booking link on the site and the team will set up a conversation to understand your environment and scope the right starting point, usually a pilot in observation mode."
+    },
+    {
+      "id": "contact",
+      "topics": [
+        "contact",
+        "talk to",
+        "demo",
+        "reach",
+        "book",
+        "get in touch"
+      ],
+      "question_intents": [
+        "How do I contact you?",
+        "How do I book a demo?"
+      ],
+      "answer": "Use the contact link or the booking link on the site to reach the team and set up a walkthrough. That is the fastest way to get your specific questions answered by a person."
+    },
+    {
+      "id": "off_topic_guard",
+      "topics": [
+        "unrelated",
+        "off topic",
+        "personal",
+        "internal",
+        "who works there",
+        "pricing exact",
+        "financials"
+      ],
+      "question_intents": [
+        "internal or sensitive questions",
+        "anything outside the product"
+      ],
+      "answer": "I keep to questions about Gatekeeper and how it works. For anything about the team, internal details, exact pricing, or partnership specifics, the right move is to reach the team directly through the contact link, and a person will follow up."
+    }
+  ]
+}
