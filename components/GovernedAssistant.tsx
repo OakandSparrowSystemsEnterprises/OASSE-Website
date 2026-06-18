@@ -29,7 +29,7 @@ export function GovernedAssistant() {
       text: "I'm the Gatekeeper assistant. Ask me anything about the product — every message you send is governed before I answer, and you'll see the verdict sealed into the record on the right.",
     },
   ]);
-  const [chain, setChain] = useState<SealedRecord[]>([]);
+  const [chain, setChain] = useState<(SealedRecord & { rationale: string })[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [verifyState, setVerifyState] = useState<null | { ok: boolean; at: number }>(null);
@@ -60,7 +60,9 @@ export function GovernedAssistant() {
       invariants: verdict.invariants,
       prevHash: lastHash,
     });
-    setChain((c) => [...c, record]);
+    // Carry the plain-English rationale on the record (display-only; not part
+    // of the sealed hash) so it renders in the record lane, not the chat.
+    setChain((c) => [...c, { ...record, rationale: verdict.rationale }]);
 
     // Mark the user's message with its verdict.
     setMessages((m) =>
@@ -79,7 +81,7 @@ export function GovernedAssistant() {
           id: crypto.randomUUID(),
           role: "assistant",
           thermal: "RED",
-          text: `Blocked. ${verdict.rationale} No answer was generated. The attempt is sealed in the record (${verdict.pack}).`,
+          text: "Blocked before execution. See the sealed record.",
         },
       ]);
       setBusy(false);
@@ -108,18 +110,15 @@ export function GovernedAssistant() {
       answer = "The assistant is unavailable right now. Please try again.";
     }
 
-    const prefix =
-      verdict.thermal === "YELLOW"
-        ? "Permitted with conditions — sensitive fields are masked and the request is scoped. "
-        : "";
-
+    // Chat bubble renders ONLY the answer-engine output. The verdict and its
+    // rationale live in the record lane and the verdict chip, never glued here.
     setMessages((m) => [
       ...m,
       {
         id: crypto.randomUUID(),
         role: "assistant",
         thermal: verdict.thermal,
-        text: prefix + answer,
+        text: answer,
       },
     ]);
     setBusy(false);
@@ -281,6 +280,7 @@ export function GovernedAssistant() {
                     </span>
                   </div>
                   <p className="mt-1 font-sans text-[11px] text-paper/60">{r.pack}</p>
+                  <p className="mt-1 text-xs leading-snug text-paper/80">{r.rationale}</p>
                   <p className="mt-1 text-xs italic text-paper/70">“{r.maskedPreview}”</p>
                   {r.invariants.length > 0 && (
                     <ul className="mt-2 space-y-0.5">
