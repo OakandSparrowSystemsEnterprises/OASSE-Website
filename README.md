@@ -39,13 +39,12 @@ components/                           # one component per site section
 lib/
   classifier.ts                       # browser governance demo + Seam 1
   hashchain.ts                        # real SHA-256 hash chaining
-  wiki.ts                             # intent-aware retrieval over the KB + Seam 2 grounding
 content/
   site.ts                             # all canonical copy (single source)
-  seam2_knowledge_base.json           # the assistant's definitive answer base (18 entries)
+  oasse_chatbot_knowledge_base.json   # the assistant's approved answer base (22 entries)
 docs/
   master-build-spec.md                # the spec this build implements
-  seam2-knowledge-base.md             # how the KB is wired (retrieval vs model)
+  chatbot-install.md                  # Seam 2 answer engine: install + design notes
 ```
 
 ## The two swap-in seams (for the CTO)
@@ -57,9 +56,12 @@ production-real — nothing else (hash chain, panel, chat flow) moves:
 - **Seam 1 — `classifyInput()`** (`lib/classifier.ts` + `app/api/classify`).
   Set `GATEKEEPER_API_URL` and the verdict comes from the live engine's
   `/evaluate` instead of the in-browser classifier.
-- **Seam 2 — grounding** (`lib/wiki.ts` + `app/api/chat`). Set
-  `ANTHROPIC_API_KEY` (and `CHAT_MODEL`, default `claude-opus-4-8`) to ground a
-  configured model on the wiki instead of using grounded retrieval.
+- **Seam 2 — the answer engine** (`app/api/chat/route.ts` +
+  `content/oasse_chatbot_knowledge_base.json`). Hardened for public traffic
+  (rate limiting, input caps, history validation, injection guard, timeout).
+  Set `ANTHROPIC_API_KEY` (and `CHAT_MODEL`, default `claude-sonnet-4-6`) and
+  it grounds the model on the approved KB, answering only from it. With no key
+  every reply is the contact handoff. See `docs/chatbot-install.md`.
 
 ## Local development
 
@@ -88,7 +90,7 @@ Next.js is Vercel-native, so this is zero-config — no `vercel.json` needed.
 
 > The product's real Gatekeeper engine runs on client networks, not in this
 > deployment — so the Vercel host stays light: it serves the marketing site,
-> the grounded-wiki assistant, and the seam stubs.
+> the knowledge-base assistant, and the seam stubs.
 
 ## Open items carried from the spec (`VERIFY`)
 

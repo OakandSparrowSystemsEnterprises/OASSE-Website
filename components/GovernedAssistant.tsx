@@ -11,7 +11,6 @@ interface ChatMessage {
   text: string;
   thermal?: Thermal;
   blocked?: boolean;
-  sources?: string[];
 }
 
 const thermalLabel: Record<Thermal, string> = {
@@ -88,17 +87,23 @@ export function GovernedAssistant() {
     }
 
     // 4. Permitted (or scoped): produce the grounded answer.
+    // New Seam 2 contract: POST the conversation history as { messages },
+    // ending on this user turn. Drop the seed greeting so the history starts
+    // on a user turn and alternates cleanly.
     let answer = "";
-    let sources: string[] = [];
     try {
+      const history = messages
+        .filter((m) => m.id !== "seed")
+        .map((m) => ({ role: m.role, content: m.text }));
+      history.push({ role: "user", content: trimmed });
+
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: trimmed }),
+        body: JSON.stringify({ messages: history }),
       });
       const data = await res.json();
       answer = data.answer ?? "";
-      sources = data.sources ?? [];
     } catch {
       answer = "The assistant is unavailable right now. Please try again.";
     }
@@ -115,7 +120,6 @@ export function GovernedAssistant() {
         role: "assistant",
         thermal: verdict.thermal,
         text: prefix + answer,
-        sources,
       },
     ]);
     setBusy(false);
@@ -176,11 +180,6 @@ export function GovernedAssistant() {
                       </span>
                     )}
                     <p>{m.text}</p>
-                    {m.sources && m.sources.length > 0 && (
-                      <p className="mt-2 font-sans text-[11px] text-paper/50">
-                        Grounded on: {m.sources.join(", ")}
-                      </p>
-                    )}
                   </div>
                 </div>
               ))}
