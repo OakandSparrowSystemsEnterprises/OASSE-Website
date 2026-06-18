@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 import { positioning, company } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -18,6 +16,9 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// Bare root layout (html/body only). Site chrome (nav/footer) is added by the
+// (site) route group; the /assistant and /onboarding embed pages render
+// chrome-less so they iframe cleanly.
 export default function RootLayout({
   children,
 }: {
@@ -25,11 +26,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
+
