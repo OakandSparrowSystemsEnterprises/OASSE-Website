@@ -1,12 +1,15 @@
 import { openSource } from "@/content/site";
+import { Reveal } from "@/components/Reveal";
 
 export function BuiltInTheOpen() {
   return (
     <section id="open-source" className="bg-paper">
       <div className="section">
-        <p className="eyebrow">Built in the open</p>
-        <h2 className="h-section mt-3 max-w-3xl">{openSource.heading}</h2>
-        <p className="lede mt-6 max-w-prose">{openSource.intro}</p>
+        <Reveal>
+          <p className="eyebrow">Built in the open</p>
+          <h2 className="h-section mt-3 max-w-3xl">{openSource.heading}</h2>
+          <p className="lede mt-6 max-w-prose">{openSource.intro}</p>
+        </Reveal>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {openSource.projects.map((p) => (

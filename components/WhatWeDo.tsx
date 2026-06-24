@@ -1,4 +1,5 @@
 import { shift, verdicts, hashChain, outcomes } from "@/content/site";
+import { Reveal } from "@/components/Reveal";
 
 const dot: Record<string, string> = {
   GREEN: "bg-verdict-green",
@@ -10,9 +11,11 @@ export function WhatWeDo() {
   return (
     <section id="what-we-do" className="bg-paper-cool">
       <div className="section">
-        <p className="eyebrow">What we do</p>
-        <h2 className="h-section mt-3 max-w-3xl">{shift.heading}</h2>
-        <p className="lede mt-6 max-w-prose">{shift.body}</p>
+        <Reveal>
+          <p className="eyebrow">What we do</p>
+          <h2 className="h-section mt-3 max-w-3xl">{shift.heading}</h2>
+          <p className="lede mt-6 max-w-prose">{shift.body}</p>
+        </Reveal>
 
         {/* Verdict model */}
         <div className="mt-14">

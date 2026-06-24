@@ -29,6 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        {/* Without JS, reveal-on-scroll elements would stay hidden — force them visible. */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
         {children}
         <Analytics />
         <SpeedInsights />
